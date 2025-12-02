@@ -1,0 +1,488 @@
+fileFormatVersion: 2
+guid: 48a1013355fccd648a74be073fe0f5b9
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 7539424304134783339
+    second: UI_TravelBook_Spritesheet01a_0
+  - first:
+      213: 4150665234673531639
+    second: UI_TravelBook_Spritesheet01a_1
+  - first:
+      213: -126353843763244710
+    second: UI_TravelBook_Spritesheet01a_2
+  - first:
+      213: -5856476380469231110
+    second: UI_TravelBook_Spritesheet01a_3
+  - first:
+      213: -5758975289079548878
+    second: UI_TravelBook_Spritesheet01a_4
+  - first:
+      213: -6528598702870552773
+    second: UI_TravelBook_Spritesheet01a_5
+  - first:
+      213: 8967021286587414309
+    second: UI_TravelBook_Spritesheet01a_6
+  - first:
+      213: -8164821773615996169
+    second: UI_TravelBook_Spritesheet01a_7
+  - first:
+      213: 7260228440296810101
+    second: UI_TravelBook_Spritesheet01a_8
+  - first:
+      213: -8858865788211059562
+    second: UI_TravelBook_Spritesheet01a_9
+  - first:
+      213: 7865523996264792280
+    second: UI_TravelBook_Spritesheet01a_10
+  - first:
+      213: -4619880126864781636
+    second: UI_TravelBook_Spritesheet01a_11
+  - first:
+      213: -508462562002355856
+    second: UI_TravelBook_Spritesheet01a_12
+  - first:
+      213: -7124878379744812474
+    second: UI_TravelBook_Spritesheet01a_13
+  - first:
+      213: 2517015423062362495
+    second: UI_TravelBook_Spritesheet01a_14
+  - first:
+      213: -1538924207365483094
+    second: UI_TravelBook_Spritesheet01a_15
+  - first:
+      213: -8927712937928965206
+    second: UI_TravelBook_Spritesheet01a_16
+  - first:
+      213: 8961885810816780196
+    second: UI_TravelBook_Spritesheet01a_17
+  - first:
+      213: 3686068349031228001
+    second: UI_TravelBook_Spritesheet01a_18
+  - first:
+      213: 6798930227321133449
+    second: UI_TravelBook_Spritesheet01a_19
+  - first:
+      213: -8904598040045139097
+    second: UI_TravelBook_Spritesheet01a_20
+  - first:
+      213: 4854568361140695812
+    second: UI_TravelBook_Spritesheet01a_21
+  - first:
+      213: -7535184221933914226
+    second: UI_TravelBook_Spritesheet01a_22
+  - first:
+      213: -900258028400401785
+    second: UI_TravelBook_Spritesheet01a_23
+  - first:
+      213: 663772796875208936
+    second: UI_TravelBook_Spritesheet01a_24
+  - first:
+      213: 7540316776518615979
+    second: UI_TravelBook_Spritesheet01a_25
+  - first:
+      213: -2450797642273577151
+    second: UI_TravelBook_Spritesheet01a_26
+  - first:
+      213: -559953289203687358
+    second: UI_TravelBook_Spritesheet01a_27
+  - first:
+      213: -310748307242965697
+    second: UI_TravelBook_Spritesheet01a_28
+  - first:
+      213: -2628221866278006828
+    second: UI_TravelBook_Spritesheet01a_29
+  - first:
+      213: -6417201795709419569
+    second: UI_TravelBook_Spritesheet01a_30
+  - first:
+      213: -2012560496005935082
+    second: UI_TravelBook_Spritesheet01a_31
+  - first:
+      213: -8427871896875772859
+    second: UI_TravelBook_Spritesheet01a_32
+  - first:
+      213: 3292041203013639105
+    second: UI_TravelBook_Spritesheet01a_33
+  - first:
+      213: 7846540674408812014
+    second: UI_TravelBook_Spritesheet01a_34
+  - first:
+      213: 8655864639169435233
+    second: UI_TravelBook_Spritesheet01a_35
+  - first:
+      213: 636783886337725083
+    second: UI_TravelBook_Spritesheet01a_36
+  - first:
+      213: 1946849279506653374
+    second: UI_TravelBook_Spritesheet01a_37
+  - first:
+      213: -178001011037730466
+    second: UI_TravelBook_Spritesheet01a_38
+  - first:
+      213: 8665829302185102355
+    second: UI_TravelBook_Spritesheet01a_39
+  - first:
+      213: -6981309007942008498
+    second: UI_TravelBook_Spritesheet01a_40
+  - first:
+      213: 8735866871549994840
+    second: UI_TravelBook_Spritesheet01a_41
+  - first:
+      213: 1387841923594178387
+    second: UI_TravelBook_Spritesheet01a_42
+  - first:
+      213: 3200453872424836725
+    second: UI_TravelBook_Spritesheet01a_43
+  - first:
+      213: -3427412147364447907
+    second: UI_TravelBook_Spritesheet01a_44
+  - first:
+      213: 5555489575514953763
+    second: UI_TravelBook_Spritesheet01a_45
+  - first:
+      213: 2941297270816694203
+    second: UI_TravelBook_Spritesheet01a_46
+  - first:
+      213: 7689457923892755042
+    second: UI_TravelBook_Spritesheet01a_47
+  - first:
+      213: 3801973232507039663
+    second: UI_TravelBook_Spritesheet01a_48
+  - first:
+      213: -2351535736004527370
+    second: UI_TravelBook_Spritesheet01a_49
+  - first:
+      213: 5560987426034425193
+    second: UI_TravelBook_Spritesheet01a_50
+  - first:
+      213: -1736326198179598209
+    second: UI_TravelBook_Spritesheet01a_51
+  - first:
+      213: 1589412219821938677
+    second: UI_TravelBook_Spritesheet01a_52
+  - first:
+      213: 2084799184541426245
+    second: UI_TravelBook_Spritesheet01a_53
+  - first:
+      213: -1329816012373038836
+    second: UI_TravelBook_Spritesheet01a_54
+  - first:
+      213: 566714083096784761
+    second: UI_TravelBook_Spritesheet01a_55
+  - first:
+      213: -5056792737324953339
+    second: UI_TravelBook_Spritesheet01a_56
+  - first:
+      213: 6038305202747589182
+    second: UI_TravelBook_Spritesheet01a_57
+  - first:
+      213: -1627041802797236528
+    second: UI_TravelBook_Spritesheet01a_58
+  - first:
+      213: 5240521728687677876
+    second: UI_TravelBook_Spritesheet01a_59
+  - first:
+      213: 6196750405309527164
+    second: UI_TravelBook_Spritesheet01a_60
+  - first:
+      213: -7878360752296952018
+    second: UI_TravelBook_Spritesheet01a_61
+  - first:
+      213: 3291754229741735326
+    second: UI_TravelBook_Spritesheet01a_62
+  - first:
+      213: 3211995004112590615
+    second: UI_TravelBook_Spritesheet01a_63
+  - first:
+      213: -1980072303316650840
+    second: UI_TravelBook_Spritesheet01a_64
+  - first:
+      213: 2101771568030340579
+    second: UI_TravelBook_Spritesheet01a_65
+  - first:
+      213: 5006757688201886247
+    second: UI_TravelBook_Spritesheet01a_66
+  - first:
+      213: 3204836964241067168
+    second: UI_TravelBook_Spritesheet01a_67
+  - first:
+      213: -6649469198064994334
+    second: UI_TravelBook_Spritesheet01a_68
+  - first:
+      213: 8744670044684464149
+    second: UI_TravelBook_Spritesheet01a_69
+  - first:
+      213: -4589630204043726120
+    second: UI_TravelBook_Spritesheet01a_70
+  - first:
+      213: 7056472119307296241
+    second: UI_TravelBook_Spritesheet01a_71
+  - first:
+      213: 440659322342832948
+    second: UI_TravelBook_Spritesheet01a_72
+  - first:
+      213: 860274235407915612
+    second: UI_TravelBook_Spritesheet01a_73
+  - first:
+      213: -1678856124046620459
+    second: UI_TravelBook_Spritesheet01a_74
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: iOS
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WindowsStoreApps
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Inv_Slot_1
+      rect:
+        serializedVersion: 2
+        x: 65
+        y: 561
+        width: 30
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b6186e2857a61a860800000000000000
+      internalID: 7539424304134783339
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Inv_Slot_2
+      rect:
+        serializedVersion: 2
+        x: 65
+        y: 529
+        width: 30
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 85318da3eb47db04e912b3a7abe30d29
+      internalID: -995108630
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Inv_Slot_Selection
+      rect:
+        serializedVersion: 2
+        x: 65
+        y: 465
+        width: 30
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 02f52e06119860e4bafc165b76686b0a
+      internalID: 197798329
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Inv_Bg
+      rect:
+        serializedVersion: 2
+        x: 65
+        y: 385
+        width: 62
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 3, y: 4, z: 1, w: 1}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 89289b056f3e0d642a2fe0811f11acd5
+      internalID: -857745483
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 3cd4176fad01d3644bc7efe8c51e74ba
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries:
+      - key: SpriteEditor.SliceSettings
+        value: '{"sliceOnImport":false,"gridCellCount":{"x":1.0,"y":1.0},"gridSpriteSize":{"x":608.0,"y":880.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.5,"y":0.5},"pivotPixels":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":0,"pivotUnitMode":0,"slicingType":2,"keepEmptyRects":false,"isAlternate":false}'
+    nameFileIdTable:
+      Inv_Bg: -857745483
+      Inv_Slot_1: 7539424304134783339
+      Inv_Slot_2: -995108630
+      Inv_Slot_Selection: 197798329
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
