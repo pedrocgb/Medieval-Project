@@ -18,7 +18,7 @@ public class InventoryGridView : MonoBehaviour
     [SerializeField] private RectTransform content;
 
     [FoldoutGroup("Prefab", expanded: true)]
-    [SerializeField] private string _slotPrefab;
+    [SerializeField] private GameObject _slotPrefab;
     [FoldoutGroup("Prefab", expanded: true)]
     [SerializeField] private InventoryItemView _itemViewPrefab;
 
@@ -87,7 +87,7 @@ public class InventoryGridView : MonoBehaviour
             {
                 for (int y = 0; y < height; y++)
                 {
-                    GameObject slotGO = ObjectPooler.instance.SpawnFromPool(_slotPrefab, content.position, Quaternion.identity);
+                    GameObject slotGO = Instantiate(_slotPrefab, content);
                     _slotInstances.Add(slotGO);
 
                     RectTransform rt = slotGO.GetComponent<RectTransform>();

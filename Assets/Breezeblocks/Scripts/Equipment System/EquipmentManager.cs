@@ -3,6 +3,7 @@ using UnityEngine;
 using CharactersStats;
 using System.Collections.Generic;
 using Sirenix.OdinInspector;
+using ObjectPool;
 
 public class EquipmentManager : MonoBehaviour
 {
@@ -110,7 +111,7 @@ public class EquipmentManager : MonoBehaviour
             return;
 
         WeaponConfig config = item.Definition.WeaponConfig;
-        if (config == null || config.weaponPrefab == null)
+        if (config == null || config.WeaponPrefab == null)
             return;
 
         var socket = GetSocketForSlot(slot);
@@ -121,7 +122,8 @@ public class EquipmentManager : MonoBehaviour
         }
 
         // Spawn the weapon as a child of the correct socket
-        var instance = Instantiate(config.weaponPrefab, socket);
+        var instance = ObjectPooler.instance.SpawnFromPool(config.WeaponPrefab, socket.localPosition, Quaternion.identity);
+        instance.transform.SetParent(socket, false);
         _spawnedWeaponInstances[slot] = instance;
 
         var runtime = instance.GetComponent<IWeapon>();
@@ -133,7 +135,7 @@ public class EquipmentManager : MonoBehaviour
         }
         else
         {
-            Debug.LogWarning($"[EquipmentManager] Weapon prefab '{config.weaponPrefab.name}' has no IWeaponRuntime component.");
+            Debug.LogWarning($"[EquipmentManager] Weapon prefab '{config.WeaponPrefab}' has no IWeaponRuntime component.");
         }
     }
 

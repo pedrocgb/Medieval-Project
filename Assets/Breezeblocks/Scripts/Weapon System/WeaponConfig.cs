@@ -1,3 +1,4 @@
+using Sirenix.OdinInspector;
 using UnityEngine;
 
 public enum WeaponAttackKind
@@ -11,19 +12,31 @@ public enum WeaponAttackKind
 [CreateAssetMenu(menuName = "Items/Weapon Config")]
 public class WeaponConfig : ScriptableObject
 {
-    [Header("Prefab/Visuals")]
-    public GameObject weaponPrefab;
+    [FoldoutGroup("Info", expanded: true)]
+    [FoldoutGroup("Info/Prefab", expanded: true)]
+    [SerializeField] private string _weaponPrefab = string.Empty;
+    public string WeaponPrefab => _weaponPrefab;
 
-    [Header("Which equipment slot is this for?")]
-    public EquipmentSlot slot = EquipmentSlot.MainHand;
+    // ======================================================================
 
+    [FoldoutGroup("Info/Slot", expanded: true)]
+    [SerializeField] private EquipmentSlot _slot;
+    public EquipmentSlot Slot => _slot;
+
+    // ======================================================================
+
+    [FoldoutGroup("Info/Stats", expanded: true)]
     [SerializeField] private WeaponStats _weaponStats;
     public WeaponStats Stats => _weaponStats;
 
-    [Header("Attack options")]
-    public WeaponAttackKind primaryAttack = WeaponAttackKind.Slash;
-    public WeaponAttackKind secondaryAttack = WeaponAttackKind.None;
+    // ======================================================================
 
-    [Header("Optional: animator overrides, sounds, etc")]
-    public AnimatorOverrideController animatorOverride;
+    [FoldoutGroup("Info/Attack", expanded: true)]
+    [SerializeField] private WeaponAttackKind _primaryAttack;
+    public WeaponAttackKind PrimaryAttack => _primaryAttack;
+    [FoldoutGroup("Info/Attack", expanded: true)]
+    [SerializeField] private WeaponAttackKind _secondaryAttack;
+    public WeaponAttackKind SecondaryAttack => _secondaryAttack;
+
+    // ======================================================================
 }

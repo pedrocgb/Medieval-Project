@@ -16,4 +16,425 @@ MonoBehaviour:
   defaultEditorBehaviour: 11
   processMouseMoveInInspector: 1
   drawingConfig:
-    configs: []
+    configs:
+    - DrawnTypeName: UnityEngine.AssetBundle, UnityEngine.AssetBundleModule
+      EditorTypeName: Sirenix.OdinInspector.Editor.OdinEditor, Sirenix.OdinInspector.Editor
+    - DrawnTypeName: UnityEngine.AssetBundleManifest, UnityEngine.AssetBundleModule
+      EditorTypeName: Sirenix.OdinInspector.Editor.OdinEditor, Sirenix.OdinInspector.Editor
+    - DrawnTypeName: UnityEngine.AudioBehaviour, UnityEngine.AudioModule
+      EditorTypeName: Sirenix.OdinInspector.Editor.OdinEditor, Sirenix.OdinInspector.Editor
+    - DrawnTypeName: UnityEngine.AudioListener, UnityEngine.AudioModule
+      EditorTypeName: Sirenix.OdinInspector.Editor.OdinEditor, Sirenix.OdinInspector.Editor
+    - DrawnTypeName: UnityEngine.Behaviour, UnityEngine.CoreModule
+      EditorTypeName: Sirenix.OdinInspector.Editor.OdinEditor, Sirenix.OdinInspector.Editor
+    - DrawnTypeName: UnityEngine.CanvasGroup, UnityEngine.UIModule
+      EditorTypeName: Sirenix.OdinInspector.Editor.OdinEditor, Sirenix.OdinInspector.Editor
+    - DrawnTypeName: UnityEngine.Collider, UnityEngine.PhysicsModule
+      EditorTypeName: Sirenix.OdinInspector.Editor.OdinEditor, Sirenix.OdinInspector.Editor
+    - DrawnTypeName: UnityEngine.Collider2D, UnityEngine.Physics2DModule
+      EditorTypeName: Sirenix.OdinInspector.Editor.OdinEditor, Sirenix.OdinInspector.Editor
+    - DrawnTypeName: UnityEngine.Component, UnityEngine.CoreModule
+      EditorTypeName: Sirenix.OdinInspector.Editor.OdinEditor, Sirenix.OdinInspector.Editor
+    - DrawnTypeName: UnityEngine.ConstantForce, UnityEngine.PhysicsModule
+      EditorTypeName: Sirenix.OdinInspector.Editor.OdinEditor, Sirenix.OdinInspector.Editor
+    - DrawnTypeName: UnityEngine.ConstantForce2D, UnityEngine.Physics2DModule
+      EditorTypeName: Sirenix.OdinInspector.Editor.OdinEditor, Sirenix.OdinInspector.Editor
+    - DrawnTypeName: UnityEngine.DifferentMarshallingTestObject, UnityEngine.MarshallingModule
+      EditorTypeName: Sirenix.OdinInspector.Editor.OdinEditor, Sirenix.OdinInspector.Editor
+    - DrawnTypeName: UnityEngine.FailedToLoadScriptObject, UnityEngine.CoreModule
+      EditorTypeName: Sirenix.OdinInspector.Editor.OdinEditor, Sirenix.OdinInspector.Editor
+    - DrawnTypeName: UnityEngine.Flare, UnityEngine.CoreModule
+      EditorTypeName: Sirenix.OdinInspector.Editor.OdinEditor, Sirenix.OdinInspector.Editor
+    - DrawnTypeName: UnityEngine.FlareLayer, UnityEngine.CoreModule
+      EditorTypeName: Sirenix.OdinInspector.Editor.OdinEditor, Sirenix.OdinInspector.Editor
+    - DrawnTypeName: UnityEngine.GridLayout, UnityEngine.GridModule
+      EditorTypeName: Sirenix.OdinInspector.Editor.OdinEditor, Sirenix.OdinInspector.Editor
+    - DrawnTypeName: UnityEngine.GUISkin, UnityEngine.IMGUIModule
+      EditorTypeName: Sirenix.OdinInspector.Editor.OdinEditor, Sirenix.OdinInspector.Editor
+    - DrawnTypeName: UnityEngine.Halo, UnityEngine.CoreModule
+      EditorTypeName: Sirenix.OdinInspector.Editor.OdinEditor, Sirenix.OdinInspector.Editor
+    - DrawnTypeName: UnityEngine.LightmapSettings, UnityEngine.CoreModule
+      EditorTypeName: Sirenix.OdinInspector.Editor.OdinEditor, Sirenix.OdinInspector.Editor
+    - DrawnTypeName: UnityEngine.LocalizationAsset, UnityEngine.LocalizationModule
+      EditorTypeName: Sirenix.OdinInspector.Editor.OdinEditor, Sirenix.OdinInspector.Editor
+    - DrawnTypeName: UnityEngine.LowerResBlitTexture, UnityEngine.CoreModule
+      EditorTypeName: Sirenix.OdinInspector.Editor.OdinEditor, Sirenix.OdinInspector.Editor
+    - DrawnTypeName: UnityEngine.MarshallingTestObject, UnityEngine.MarshallingModule
+      EditorTypeName: Sirenix.OdinInspector.Editor.OdinEditor, Sirenix.OdinInspector.Editor
+    - DrawnTypeName: UnityEngine.MeshFilter, UnityEngine.CoreModule
+      EditorTypeName: Sirenix.OdinInspector.Editor.OdinEditor, Sirenix.OdinInspector.Editor
+    - DrawnTypeName: UnityEngine.MonoBehaviour, UnityEngine.CoreModule
+      EditorTypeName: Sirenix.OdinInspector.Editor.OdinEditor, Sirenix.OdinInspector.Editor
+    - DrawnTypeName: UnityEngine.Motion, UnityEngine.AnimationModule
+      EditorTypeName: Sirenix.OdinInspector.Editor.OdinEditor, Sirenix.OdinInspector.Editor
+    - DrawnTypeName: UnityEngine.ParticleSystemRenderer, UnityEngine.ParticleSystemModule
+      EditorTypeName: Sirenix.OdinInspector.Editor.OdinEditor, Sirenix.OdinInspector.Editor
+    - DrawnTypeName: UnityEngine.PhysicsMaterial2D, UnityEngine.Physics2DModule
+      EditorTypeName: Sirenix.OdinInspector.Editor.OdinEditor, Sirenix.OdinInspector.Editor
+    - DrawnTypeName: UnityEngine.PhysicsUpdateBehaviour2D, UnityEngine.Physics2DModule
+      EditorTypeName: Sirenix.OdinInspector.Editor.OdinEditor, Sirenix.OdinInspector.Editor
+    - DrawnTypeName: UnityEngine.PreloadData, UnityEngine.CoreModule
+      EditorTypeName: Sirenix.OdinInspector.Editor.OdinEditor, Sirenix.OdinInspector.Editor
+    - DrawnTypeName: UnityEngine.Renderer, UnityEngine.CoreModule
+      EditorTypeName: Sirenix.OdinInspector.Editor.OdinEditor, Sirenix.OdinInspector.Editor
+    - DrawnTypeName: UnityEngine.RuntimeAnimatorController, UnityEngine.AnimationModule
+      EditorTypeName: Sirenix.OdinInspector.Editor.OdinEditor, Sirenix.OdinInspector.Editor
+    - DrawnTypeName: UnityEngine.RuntimeTextSettings, UnityEngine.IMGUIModule
+      EditorTypeName: Sirenix.OdinInspector.Editor.OdinEditor, Sirenix.OdinInspector.Editor
+    - DrawnTypeName: UnityEngine.ScriptableObject, UnityEngine.CoreModule
+      EditorTypeName: Sirenix.OdinInspector.Editor.OdinEditor, Sirenix.OdinInspector.Editor
+    - DrawnTypeName: UnityEngine.Skybox, UnityEngine.CoreModule
+      EditorTypeName: Sirenix.OdinInspector.Editor.OdinEditor, Sirenix.OdinInspector.Editor
+    - DrawnTypeName: UnityEngine.SparseTexture, UnityEngine.CoreModule
+      EditorTypeName: Sirenix.OdinInspector.Editor.OdinEditor, Sirenix.OdinInspector.Editor
+    - DrawnTypeName: UnityEngine.SpeedTreeWindAsset, UnityEngine.TerrainModule
+      EditorTypeName: Sirenix.OdinInspector.Editor.OdinEditor, Sirenix.OdinInspector.Editor
+    - DrawnTypeName: UnityEngine.TerrainData, UnityEngine.TerrainModule
+      EditorTypeName: Sirenix.OdinInspector.Editor.OdinEditor, Sirenix.OdinInspector.Editor
+    - DrawnTypeName: UnityEngine.Texture, UnityEngine.CoreModule
+      EditorTypeName: Sirenix.OdinInspector.Editor.OdinEditor, Sirenix.OdinInspector.Editor
+    - DrawnTypeName: UnityEngine.AI.NavMeshData, UnityEngine.AIModule
+      EditorTypeName: Sirenix.OdinInspector.Editor.OdinEditor, Sirenix.OdinInspector.Editor
+    - DrawnTypeName: UnityEngine.Audio.AudioContainerElement, UnityEngine.AudioModule
+      EditorTypeName: Sirenix.OdinInspector.Editor.OdinEditor, Sirenix.OdinInspector.Editor
+    - DrawnTypeName: UnityEngine.Audio.AudioMixerGroup, UnityEngine.AudioModule
+      EditorTypeName: Sirenix.OdinInspector.Editor.OdinEditor, Sirenix.OdinInspector.Editor
+    - DrawnTypeName: UnityEngine.Audio.AudioMixerSnapshot, UnityEngine.AudioModule
+      EditorTypeName: Sirenix.OdinInspector.Editor.OdinEditor, Sirenix.OdinInspector.Editor
+    - DrawnTypeName: UnityEngine.Connect.UnityConnectSettings, UnityEngine.UnityConnectModule
+      EditorTypeName: Sirenix.OdinInspector.Editor.OdinEditor, Sirenix.OdinInspector.Editor
+    - DrawnTypeName: UnityEngine.Experimental.Rendering.GraphicsStateCollection,
+        UnityEngine.CoreModule
+      EditorTypeName: Sirenix.OdinInspector.Editor.OdinEditor, Sirenix.OdinInspector.Editor
+    - DrawnTypeName: UnityEngine.Networking.PlayerConnection.PlayerConnection, UnityEngine.CoreModule
+      EditorTypeName: Sirenix.OdinInspector.Editor.OdinEditor, Sirenix.OdinInspector.Editor
+    - DrawnTypeName: UnityEngine.UIElements.FilterFunctionDefinition, UnityEngine.UIElementsModule
+      EditorTypeName: Sirenix.OdinInspector.Editor.OdinEditor, Sirenix.OdinInspector.Editor
+    - DrawnTypeName: UnityEngine.UIElements.ThemeStyleSheet, UnityEngine.UIElementsModule
+      EditorTypeName: Sirenix.OdinInspector.Editor.OdinEditor, Sirenix.OdinInspector.Editor
+    - DrawnTypeName: UnityEngine.UIElements.VectorImage, UnityEngine.UIElementsModule
+      EditorTypeName: Sirenix.OdinInspector.Editor.OdinEditor, Sirenix.OdinInspector.Editor
+    - DrawnTypeName: UnityEngine.UIElements.InputSystem.InputSystemEventSystem, UnityEngine.UIElementsModule
+      EditorTypeName: Sirenix.OdinInspector.Editor.OdinEditor, Sirenix.OdinInspector.Editor
+    - DrawnTypeName: UnityEngine.VFX.VFXRenderer, UnityEngine.VFXModule
+      EditorTypeName: Sirenix.OdinInspector.Editor.OdinEditor, Sirenix.OdinInspector.Editor
+    - DrawnTypeName: UnityEngine.VFX.VisualEffectAsset, UnityEngine.VFXModule
+      EditorTypeName: Sirenix.OdinInspector.Editor.OdinEditor, Sirenix.OdinInspector.Editor
+    - DrawnTypeName: UnityEditor.AndroidAssetPackImporter, UnityEditor.CoreModule
+      EditorTypeName: Sirenix.OdinInspector.Editor.OdinEditor, Sirenix.OdinInspector.Editor
+    - DrawnTypeName: UnityEditor.AnimationModeDriver, UnityEditor.CoreModule
+      EditorTypeName: Sirenix.OdinInspector.Editor.OdinEditor, Sirenix.OdinInspector.Editor
+    - DrawnTypeName: UnityEditor.AnimEditor, UnityEditor.CoreModule
+      EditorTypeName: Sirenix.OdinInspector.Editor.OdinEditor, Sirenix.OdinInspector.Editor
+    - DrawnTypeName: UnityEditor.AppStatusBar, UnityEditor.CoreModule
+      EditorTypeName: Sirenix.OdinInspector.Editor.OdinEditor, Sirenix.OdinInspector.Editor
+    - DrawnTypeName: UnityEditor.AssemblyDefinitionReferenceImporterInspector+AssemblyDefinitionReferenceState,
+        UnityEditor.CoreModule
+      EditorTypeName: Sirenix.OdinInspector.Editor.OdinEditor, Sirenix.OdinInspector.Editor
+    - DrawnTypeName: UnityEditor.AssemblyDefinitionImporterInspector+AssemblyDefinitionState,
+        UnityEditor.CoreModule
+      EditorTypeName: Sirenix.OdinInspector.Editor.OdinEditor, Sirenix.OdinInspector.Editor
+    - DrawnTypeName: UnityEditor.AssetImporter, UnityEditor.CoreModule
+      EditorTypeName: Sirenix.OdinInspector.Editor.OdinEditor, Sirenix.OdinInspector.Editor
+    - DrawnTypeName: UnityEditor.AvatarMappingEditor, UnityEditor.CoreModule
+      EditorTypeName: Sirenix.OdinInspector.Editor.OdinEditor, Sirenix.OdinInspector.Editor
+    - DrawnTypeName: UnityEditor.AvatarMuscleEditor, UnityEditor.CoreModule
+      EditorTypeName: Sirenix.OdinInspector.Editor.OdinEditor, Sirenix.OdinInspector.Editor
+    - DrawnTypeName: UnityEditor.AvatarPreviewSelection, UnityEditor.CoreModule
+      EditorTypeName: Sirenix.OdinInspector.Editor.OdinEditor, Sirenix.OdinInspector.Editor
+    - DrawnTypeName: UnityEditor.AvatarSubEditor, UnityEditor.CoreModule
+      EditorTypeName: Sirenix.OdinInspector.Editor.OdinEditor, Sirenix.OdinInspector.Editor
+    - DrawnTypeName: UnityEditor.BuildReportRestService, UnityEditor.CoreModule
+      EditorTypeName: Sirenix.OdinInspector.Editor.OdinEditor, Sirenix.OdinInspector.Editor
+    - DrawnTypeName: UnityEditor.ClothInspectorState, UnityEditor.ClothModule
+      EditorTypeName: Sirenix.OdinInspector.Editor.OdinEditor, Sirenix.OdinInspector.Editor
+    - DrawnTypeName: UnityEditor.ContainerWindow, UnityEditor.CoreModule
+      EditorTypeName: Sirenix.OdinInspector.Editor.OdinEditor, Sirenix.OdinInspector.Editor
+    - DrawnTypeName: UnityEditor.CurveEditorSelection, UnityEditor.CoreModule
+      EditorTypeName: Sirenix.OdinInspector.Editor.OdinEditor, Sirenix.OdinInspector.Editor
+    - DrawnTypeName: UnityEditor.DiagnosticSwitchesConsoleMessage, UnityEditor.DiagnosticsModule
+      EditorTypeName: Sirenix.OdinInspector.Editor.OdinEditor, Sirenix.OdinInspector.Editor
+    - DrawnTypeName: UnityEditor.DockArea, UnityEditor.CoreModule
+      EditorTypeName: Sirenix.OdinInspector.Editor.OdinEditor, Sirenix.OdinInspector.Editor
+    - DrawnTypeName: UnityEditor.AssetPopupBackend+DoCreateNewAsset, UnityEditor.CoreModule
+      EditorTypeName: Sirenix.OdinInspector.Editor.OdinEditor, Sirenix.OdinInspector.Editor
+    - DrawnTypeName: UnityEditor.SharedLightingSettingsEditor+DoCreateNewLightmapParameters,
+        UnityEditor.CoreModule
+      EditorTypeName: Sirenix.OdinInspector.Editor.OdinEditor, Sirenix.OdinInspector.Editor
+    - DrawnTypeName: UnityEditor.TerrainInspector+DoCreateTerrainMaterial, UnityEditor.TerrainModule
+      EditorTypeName: Sirenix.OdinInspector.Editor.OdinEditor, Sirenix.OdinInspector.Editor
+    - DrawnTypeName: UnityEditor.EditorBuildSettings, UnityEditor.CoreModule
+      EditorTypeName: Sirenix.OdinInspector.Editor.OdinEditor, Sirenix.OdinInspector.Editor
+    - DrawnTypeName: UnityEditor.EditorSnapSettingsData, UnityEditor.CoreModule
+      EditorTypeName: Sirenix.OdinInspector.Editor.OdinEditor, Sirenix.OdinInspector.Editor
+    - DrawnTypeName: UnityEditor.EditorTextSettings, UnityEditor.CoreModule
+      EditorTypeName: Sirenix.OdinInspector.Editor.OdinEditor, Sirenix.OdinInspector.Editor
+    - DrawnTypeName: UnityEditor.EditorUserBuildSettings, UnityEditor.CoreModule
+      EditorTypeName: Sirenix.OdinInspector.Editor.OdinEditor, Sirenix.OdinInspector.Editor
+    - DrawnTypeName: UnityEditor.EditorUserSettings, UnityEditor.CoreModule
+      EditorTypeName: Sirenix.OdinInspector.Editor.OdinEditor, Sirenix.OdinInspector.Editor
+    - DrawnTypeName: UnityEditor.EyeDropper, UnityEditor.CoreModule
+      EditorTypeName: Sirenix.OdinInspector.Editor.OdinEditor, Sirenix.OdinInspector.Editor
+    - DrawnTypeName: UnityEditor.GameViewSizes, UnityEditor.CoreModule
+      EditorTypeName: Sirenix.OdinInspector.Editor.OdinEditor, Sirenix.OdinInspector.Editor
+    - DrawnTypeName: UnityEditor.GUIStyleHolder, UnityEditor.CoreModule
+      EditorTypeName: Sirenix.OdinInspector.Editor.OdinEditor, Sirenix.OdinInspector.Editor
+    - DrawnTypeName: UnityEditor.GUIView, UnityEditor.CoreModule
+      EditorTypeName: Sirenix.OdinInspector.Editor.OdinEditor, Sirenix.OdinInspector.Editor
+    - DrawnTypeName: UnityEditor.HostView, UnityEditor.CoreModule
+      EditorTypeName: Sirenix.OdinInspector.Editor.OdinEditor, Sirenix.OdinInspector.Editor
+    - DrawnTypeName: UnityEditor.HumanTemplate, UnityEditor.CoreModule
+      EditorTypeName: Sirenix.OdinInspector.Editor.OdinEditor, Sirenix.OdinInspector.Editor
+    - DrawnTypeName: UnityEditor.LaunchSpriteEditorWindowAfterDomainReload, UnityEditor.CoreModule
+      EditorTypeName: Sirenix.OdinInspector.Editor.OdinEditor, Sirenix.OdinInspector.Editor
+    - DrawnTypeName: UnityEditor.LightingDataAsset, UnityEditor.CoreModule
+      EditorTypeName: Sirenix.OdinInspector.Editor.OdinEditor, Sirenix.OdinInspector.Editor
+    - DrawnTypeName: UnityEditor.LightProbeGroupSelection, UnityEditor.CoreModule
+      EditorTypeName: Sirenix.OdinInspector.Editor.OdinEditor, Sirenix.OdinInspector.Editor
+    - DrawnTypeName: UnityEditor.LineRendererEditorSettings, UnityEditor.CoreModule
+      EditorTypeName: Sirenix.OdinInspector.Editor.OdinEditor, Sirenix.OdinInspector.Editor
+    - DrawnTypeName: UnityEditor.MainView, UnityEditor.CoreModule
+      EditorTypeName: Sirenix.OdinInspector.Editor.OdinEditor, Sirenix.OdinInspector.Editor
+    - DrawnTypeName: UnityEditor.MaximizedHostView, UnityEditor.CoreModule
+      EditorTypeName: Sirenix.OdinInspector.Editor.OdinEditor, Sirenix.OdinInspector.Editor
+    - DrawnTypeName: UnityEditor.ModeDescriptor, UnityEditor.CoreModule
+      EditorTypeName: Sirenix.OdinInspector.Editor.OdinEditor, Sirenix.OdinInspector.Editor
+    - DrawnTypeName: UnityEditor.AvatarPreview+ObjectSelectorOperation, UnityEditor.CoreModule
+      EditorTypeName: Sirenix.OdinInspector.Editor.OdinEditor, Sirenix.OdinInspector.Editor
+    - DrawnTypeName: UnityEditor.PackageImportWizard, UnityEditor.CoreModule
+      EditorTypeName: Sirenix.OdinInspector.Editor.OdinEditor, Sirenix.OdinInspector.Editor
+    - DrawnTypeName: UnityEditor.PaneDragTab, UnityEditor.CoreModule
+      EditorTypeName: Sirenix.OdinInspector.Editor.OdinEditor, Sirenix.OdinInspector.Editor
+    - DrawnTypeName: UnityEditor.Physics2DPreferenceState, UnityEditor.Physics2DModule
+      EditorTypeName: Sirenix.OdinInspector.Editor.OdinEditor, Sirenix.OdinInspector.Editor
+    - DrawnTypeName: UnityEditor.AudioImporterInspector+PlatformSettings, UnityEditor.CoreModule
+      EditorTypeName: Sirenix.OdinInspector.Editor.OdinEditor, Sirenix.OdinInspector.Editor
+    - DrawnTypeName: UnityEditor.PlayerConnectionLogReceiver, UnityEditor.CoreModule
+      EditorTypeName: Sirenix.OdinInspector.Editor.OdinEditor, Sirenix.OdinInspector.Editor
+    - DrawnTypeName: UnityEditor.PresetLibraryManager, UnityEditor.CoreModule
+      EditorTypeName: Sirenix.OdinInspector.Editor.OdinEditor, Sirenix.OdinInspector.Editor
+    - DrawnTypeName: UnityEditor.PreviewImporter, UnityEditor.CoreModule
+      EditorTypeName: Sirenix.OdinInspector.Editor.OdinEditor, Sirenix.OdinInspector.Editor
+    - DrawnTypeName: UnityEditor.ReferencesArtifactGenerator, UnityEditor.CoreModule
+      EditorTypeName: Sirenix.OdinInspector.Editor.OdinEditor, Sirenix.OdinInspector.Editor
+    - DrawnTypeName: UnityEditor.SavedSearchFilters, UnityEditor.CoreModule
+      EditorTypeName: Sirenix.OdinInspector.Editor.OdinEditor, Sirenix.OdinInspector.Editor
+    - DrawnTypeName: UnityEditor.SceneAsset, UnityEditor.CoreModule
+      EditorTypeName: Sirenix.OdinInspector.Editor.OdinEditor, Sirenix.OdinInspector.Editor
+    - DrawnTypeName: UnityEditor.SceneModeUtility+SceneModeData, UnityEditor.CoreModule
+      EditorTypeName: Sirenix.OdinInspector.Editor.OdinEditor, Sirenix.OdinInspector.Editor
+    - DrawnTypeName: UnityEditor.SceneVisibilityManager, UnityEditor.CoreModule
+      EditorTypeName: Sirenix.OdinInspector.Editor.OdinEditor, Sirenix.OdinInspector.Editor
+    - DrawnTypeName: UnityEditor.SceneVisibilityState, UnityEditor.CoreModule
+      EditorTypeName: Sirenix.OdinInspector.Editor.OdinEditor, Sirenix.OdinInspector.Editor
+    - DrawnTypeName: UnityEditor.ScriptableSingleton`1, UnityEditor.CoreModule
+      EditorTypeName: Sirenix.OdinInspector.Editor.OdinEditor, Sirenix.OdinInspector.Editor
+    - DrawnTypeName: UnityEditor.ScriptReloadProperties, UnityEditor.CoreModule
+      EditorTypeName: Sirenix.OdinInspector.Editor.OdinEditor, Sirenix.OdinInspector.Editor
+    - DrawnTypeName: UnityEditor.SerializableDelayedCallback, UnityEditor.CoreModule
+      EditorTypeName: Sirenix.OdinInspector.Editor.OdinEditor, Sirenix.OdinInspector.Editor
+    - DrawnTypeName: UnityEditor.ShaderInclude, UnityEditor.CoreModule
+      EditorTypeName: Sirenix.OdinInspector.Editor.OdinEditor, Sirenix.OdinInspector.Editor
+    - DrawnTypeName: UnityEditor.ShaderIncludeImporter, UnityEditor.CoreModule
+      EditorTypeName: Sirenix.OdinInspector.Editor.OdinEditor, Sirenix.OdinInspector.Editor
+    - DrawnTypeName: UnityEditor.ShaderImporterInspector+ShaderProperties, UnityEditor.CoreModule
+      EditorTypeName: Sirenix.OdinInspector.Editor.OdinEditor, Sirenix.OdinInspector.Editor
+    - DrawnTypeName: UnityEditor.SplitView, UnityEditor.CoreModule
+      EditorTypeName: Sirenix.OdinInspector.Editor.OdinEditor, Sirenix.OdinInspector.Editor
+    - DrawnTypeName: UnityEditor.VideoClipImporterInspector+TargetSettings, UnityEditor.CoreModule
+      EditorTypeName: Sirenix.OdinInspector.Editor.OdinEditor, Sirenix.OdinInspector.Editor
+    - DrawnTypeName: UnityEditor.Texture3DPreview, UnityEditor.CoreModule
+      EditorTypeName: Sirenix.OdinInspector.Editor.OdinEditor, Sirenix.OdinInspector.Editor
+    - DrawnTypeName: UnityEditor.Toolbar, UnityEditor.CoreModule
+      EditorTypeName: Sirenix.OdinInspector.Editor.OdinEditor, Sirenix.OdinInspector.Editor
+    - DrawnTypeName: UnityEditor.Tools, UnityEditor.CoreModule
+      EditorTypeName: Sirenix.OdinInspector.Editor.OdinEditor, Sirenix.OdinInspector.Editor
+    - DrawnTypeName: UnityEditor.TooltipView, UnityEditor.CoreModule
+      EditorTypeName: Sirenix.OdinInspector.Editor.OdinEditor, Sirenix.OdinInspector.Editor
+    - DrawnTypeName: UnityEditor.View, UnityEditor.CoreModule
+      EditorTypeName: Sirenix.OdinInspector.Editor.OdinEditor, Sirenix.OdinInspector.Editor
+    - DrawnTypeName: UnityEditor.WindowFocusState, UnityEditor.CoreModule
+      EditorTypeName: Sirenix.OdinInspector.Editor.OdinEditor, Sirenix.OdinInspector.Editor
+    - DrawnTypeName: UnityEditor.Android.AndroidBuildProperties, UnityEditor.Android.Extensions
+      EditorTypeName: Sirenix.OdinInspector.Editor.OdinEditor, Sirenix.OdinInspector.Editor
+    - DrawnTypeName: UnityEditor.Android.AndroidExtensionData, UnityEditor.Android.Extensions
+      EditorTypeName: Sirenix.OdinInspector.Editor.OdinEditor, Sirenix.OdinInspector.Editor
+    - DrawnTypeName: UnityEditor.Android.TargetScanWorker+PersistentData, UnityEditor.Android.Extensions
+      EditorTypeName: Sirenix.OdinInspector.Editor.OdinEditor, Sirenix.OdinInspector.Editor
+    - DrawnTypeName: UnityEditor.Animations.AnimatorController, UnityEditor.CoreModule
+      EditorTypeName: Sirenix.OdinInspector.Editor.OdinEditor, Sirenix.OdinInspector.Editor
+    - DrawnTypeName: UnityEditor.Animations.AnimatorTransitionBase, UnityEditor.CoreModule
+      EditorTypeName: Sirenix.OdinInspector.Editor.OdinEditor, Sirenix.OdinInspector.Editor
+    - DrawnTypeName: UnityEditor.Animations.GameObjectRecorder, UnityEditor.CoreModule
+      EditorTypeName: Sirenix.OdinInspector.Editor.OdinEditor, Sirenix.OdinInspector.Editor
+    - DrawnTypeName: UnityEditor.AssetImporters.ImportLog, UnityEditor.CoreModule
+      EditorTypeName: Sirenix.OdinInspector.Editor.OdinEditor, Sirenix.OdinInspector.Editor
+    - DrawnTypeName: UnityEditor.Audio.AudioMixerEffectController, UnityEditor.CoreModule
+      EditorTypeName: Sirenix.OdinInspector.Editor.OdinEditor, Sirenix.OdinInspector.Editor
+    - DrawnTypeName: UnityEditor.Build.Content.BuildArchiveImporter, UnityEditor.CoreModule
+      EditorTypeName: Sirenix.OdinInspector.Editor.OdinEditor, Sirenix.OdinInspector.Editor
+    - DrawnTypeName: UnityEditor.Build.Content.BuildInstructionImporter, UnityEditor.CoreModule
+      EditorTypeName: Sirenix.OdinInspector.Editor.OdinEditor, Sirenix.OdinInspector.Editor
+    - DrawnTypeName: UnityEditor.Build.Content.BuildMetaDataImporter, UnityEditor.CoreModule
+      EditorTypeName: Sirenix.OdinInspector.Editor.OdinEditor, Sirenix.OdinInspector.Editor
+    - DrawnTypeName: UnityEditor.Build.Profile.BuildAutomationSettings, UnityEditor.BuildProfileModule
+      EditorTypeName: Sirenix.OdinInspector.Editor.OdinEditor, Sirenix.OdinInspector.Editor
+    - DrawnTypeName: UnityEditor.Build.Profile.BuildProfileContext, UnityEditor.CoreModule
+      EditorTypeName: Sirenix.OdinInspector.Editor.OdinEditor, Sirenix.OdinInspector.Editor
+    - DrawnTypeName: UnityEditor.Build.Reporting.BuildReport, UnityEditor.CoreModule
+      EditorTypeName: Sirenix.OdinInspector.Editor.OdinEditor, Sirenix.OdinInspector.Editor
+    - DrawnTypeName: UnityEditor.Build.Reporting.PackedAssets, UnityEditor.CoreModule
+      EditorTypeName: Sirenix.OdinInspector.Editor.OdinEditor, Sirenix.OdinInspector.Editor
+    - DrawnTypeName: UnityEditor.Build.Reporting.ScenesUsingAssets, UnityEditor.CoreModule
+      EditorTypeName: Sirenix.OdinInspector.Editor.OdinEditor, Sirenix.OdinInspector.Editor
+    - DrawnTypeName: UnityEditor.Build.Reporting.StrippingInfo, UnityEditor.CoreModule
+      EditorTypeName: Sirenix.OdinInspector.Editor.OdinEditor, Sirenix.OdinInspector.Editor
+    - DrawnTypeName: UnityEditor.EditorTools.EditorToolManager, UnityEditor.CoreModule
+      EditorTypeName: Sirenix.OdinInspector.Editor.OdinEditor, Sirenix.OdinInspector.Editor
+    - DrawnTypeName: UnityEditor.Experimental.MultiArtifactTestImporter, UnityEditor.CoreModule
+      EditorTypeName: Sirenix.OdinInspector.Editor.OdinEditor, Sirenix.OdinInspector.Editor
+    - DrawnTypeName: UnityEditor.Experimental.GraphView.GraphViewUndoRedoSelection,
+        UnityEditor.GraphViewModule
+      EditorTypeName: Sirenix.OdinInspector.Editor.OdinEditor, Sirenix.OdinInspector.Editor
+    - DrawnTypeName: UnityEditor.Graphs.Graph, UnityEditor.Graphs
+      EditorTypeName: Sirenix.OdinInspector.Editor.OdinEditor, Sirenix.OdinInspector.Editor
+    - DrawnTypeName: UnityEditor.Graphs.GroupNode, UnityEditor.Graphs
+      EditorTypeName: Sirenix.OdinInspector.Editor.OdinEditor, Sirenix.OdinInspector.Editor
+    - DrawnTypeName: UnityEditor.Graphs.Node, UnityEditor.Graphs
+      EditorTypeName: Sirenix.OdinInspector.Editor.OdinEditor, Sirenix.OdinInspector.Editor
+    - DrawnTypeName: UnityEditor.Graphs.ProxyNode, UnityEditor.Graphs
+      EditorTypeName: Sirenix.OdinInspector.Editor.OdinEditor, Sirenix.OdinInspector.Editor
+    - DrawnTypeName: UnityEditor.Graphs.AnimationBlendTree.Graph, UnityEditor.Graphs
+      EditorTypeName: Sirenix.OdinInspector.Editor.OdinEditor, Sirenix.OdinInspector.Editor
+    - DrawnTypeName: UnityEditor.Graphs.AnimationBlendTree.GraphGUI, UnityEditor.Graphs
+      EditorTypeName: Sirenix.OdinInspector.Editor.OdinEditor, Sirenix.OdinInspector.Editor
+    - DrawnTypeName: UnityEditor.Graphs.AnimationBlendTree.Node, UnityEditor.Graphs
+      EditorTypeName: Sirenix.OdinInspector.Editor.OdinEditor, Sirenix.OdinInspector.Editor
+    - DrawnTypeName: UnityEditor.Graphs.AnimationStateMachine.Graph, UnityEditor.Graphs
+      EditorTypeName: Sirenix.OdinInspector.Editor.OdinEditor, Sirenix.OdinInspector.Editor
+    - DrawnTypeName: UnityEditor.Graphs.AnimationStateMachine.GraphGUI, UnityEditor.Graphs
+      EditorTypeName: Sirenix.OdinInspector.Editor.OdinEditor, Sirenix.OdinInspector.Editor
+    - DrawnTypeName: UnityEditor.Graphs.AnimationStateMachine.Node, UnityEditor.Graphs
+      EditorTypeName: Sirenix.OdinInspector.Editor.OdinEditor, Sirenix.OdinInspector.Editor
+    - DrawnTypeName: UnityEditor.Graphs.AnimationStateMachine.StateMachineNode, UnityEditor.Graphs
+      EditorTypeName: Sirenix.OdinInspector.Editor.OdinEditor, Sirenix.OdinInspector.Editor
+    - DrawnTypeName: UnityEditor.Graphs.AnimationStateMachine.StateNode, UnityEditor.Graphs
+      EditorTypeName: Sirenix.OdinInspector.Editor.OdinEditor, Sirenix.OdinInspector.Editor
+    - DrawnTypeName: UnityEditor.iOS.ExtensionData, UnityEditor.iOS.Extensions
+      EditorTypeName: Sirenix.OdinInspector.Editor.OdinEditor, Sirenix.OdinInspector.Editor
+    - DrawnTypeName: UnityEditor.Modules.DefaultBuildProperties, UnityEditor.CoreModule
+      EditorTypeName: Sirenix.OdinInspector.Editor.OdinEditor, Sirenix.OdinInspector.Editor
+    - DrawnTypeName: UnityEditor.Networking.PlayerConnection.EditorConnection, UnityEditor.CoreModule
+      EditorTypeName: Sirenix.OdinInspector.Editor.OdinEditor, Sirenix.OdinInspector.Editor
+    - DrawnTypeName: UnityEditor.Overlays.OverlayCanvasesData, UnityEditor.CoreModule
+      EditorTypeName: Sirenix.OdinInspector.Editor.OdinEditor, Sirenix.OdinInspector.Editor
+    - DrawnTypeName: UnityEditor.Overlays.OverlayPreset, UnityEditor.CoreModule
+      EditorTypeName: Sirenix.OdinInspector.Editor.OdinEditor, Sirenix.OdinInspector.Editor
+    - DrawnTypeName: UnityEditor.Overlays.OverlayPresetManager, UnityEditor.CoreModule
+      EditorTypeName: Sirenix.OdinInspector.Editor.OdinEditor, Sirenix.OdinInspector.Editor
+    - DrawnTypeName: UnityEditor.PackageManager.UI.Internal.AssetStoreDownloadManager+DownloadDelegateHandler,
+        UnityEditor.CoreModule
+      EditorTypeName: Sirenix.OdinInspector.Editor.OdinEditor, Sirenix.OdinInspector.Editor
+    - DrawnTypeName: UnityEditor.PackageManager.UI.Internal.PackageManagerProjectSettings,
+        UnityEditor.CoreModule
+      EditorTypeName: Sirenix.OdinInspector.Editor.OdinEditor, Sirenix.OdinInspector.Editor
+    - DrawnTypeName: UnityEditor.PackageManager.UI.Internal.PackageManifestImporterEditor+PackageManifestState,
+        UnityEditor.CoreModule
+      EditorTypeName: Sirenix.OdinInspector.Editor.OdinEditor, Sirenix.OdinInspector.Editor
+    - DrawnTypeName: UnityEditor.PackageManager.UI.Internal.PlayModeDownloadState,
+        UnityEditor.CoreModule
+      EditorTypeName: Sirenix.OdinInspector.Editor.OdinEditor, Sirenix.OdinInspector.Editor
+    - DrawnTypeName: UnityEditor.PackageManager.UI.Internal.RegistryInfoDraftData,
+        UnityEditor.CoreModule
+      EditorTypeName: Sirenix.OdinInspector.Editor.OdinEditor, Sirenix.OdinInspector.Editor
+    - DrawnTypeName: UnityEditor.PackageManager.UI.Internal.RegistryInfoOriginalData,
+        UnityEditor.CoreModule
+      EditorTypeName: Sirenix.OdinInspector.Editor.OdinEditor, Sirenix.OdinInspector.Editor
+    - DrawnTypeName: UnityEditor.PackageManager.UI.Internal.ServicesContainer, UnityEditor.CoreModule
+      EditorTypeName: Sirenix.OdinInspector.Editor.OdinEditor, Sirenix.OdinInspector.Editor
+    - DrawnTypeName: UnityEditor.ProjectWindowCallback.DoCreateAnimatorController,
+        UnityEditor.CoreModule
+      EditorTypeName: Sirenix.OdinInspector.Editor.OdinEditor, Sirenix.OdinInspector.Editor
+    - DrawnTypeName: UnityEditor.ProjectWindowCallback.DoCreateAssetWithContent,
+        UnityEditor.CoreModule
+      EditorTypeName: Sirenix.OdinInspector.Editor.OdinEditor, Sirenix.OdinInspector.Editor
+    - DrawnTypeName: UnityEditor.ProjectWindowCallback.DoCreateAudioMixer, UnityEditor.CoreModule
+      EditorTypeName: Sirenix.OdinInspector.Editor.OdinEditor, Sirenix.OdinInspector.Editor
+    - DrawnTypeName: UnityEditor.ProjectWindowCallback.DoCreateAudioRandomContainer,
+        UnityEditor.CoreModule
+      EditorTypeName: Sirenix.OdinInspector.Editor.OdinEditor, Sirenix.OdinInspector.Editor
+    - DrawnTypeName: UnityEditor.ProjectWindowCallback.DoCreateFolder, UnityEditor.CoreModule
+      EditorTypeName: Sirenix.OdinInspector.Editor.OdinEditor, Sirenix.OdinInspector.Editor
+    - DrawnTypeName: UnityEditor.ProjectWindowCallback.DoCreateFolderWithTemplates,
+        UnityEditor.CoreModule
+      EditorTypeName: Sirenix.OdinInspector.Editor.OdinEditor, Sirenix.OdinInspector.Editor
+    - DrawnTypeName: UnityEditor.ProjectWindowCallback.DoCreateNewAsset, UnityEditor.CoreModule
+      EditorTypeName: Sirenix.OdinInspector.Editor.OdinEditor, Sirenix.OdinInspector.Editor
+    - DrawnTypeName: UnityEditor.ProjectWindowCallback.DoCreateNewDefaultAsset, UnityEditor.CoreModule
+      EditorTypeName: Sirenix.OdinInspector.Editor.OdinEditor, Sirenix.OdinInspector.Editor
+    - DrawnTypeName: UnityEditor.ProjectWindowCallback.DoCreatePrefab, UnityEditor.CoreModule
+      EditorTypeName: Sirenix.OdinInspector.Editor.OdinEditor, Sirenix.OdinInspector.Editor
+    - DrawnTypeName: UnityEditor.ProjectWindowCallback.DoCreatePrefabVariant, UnityEditor.CoreModule
+      EditorTypeName: Sirenix.OdinInspector.Editor.OdinEditor, Sirenix.OdinInspector.Editor
+    - DrawnTypeName: UnityEditor.ProjectWindowCallback.DoCreateScene, UnityEditor.CoreModule
+      EditorTypeName: Sirenix.OdinInspector.Editor.OdinEditor, Sirenix.OdinInspector.Editor
+    - DrawnTypeName: UnityEditor.ProjectWindowCallback.DoCreateScriptAsset, UnityEditor.CoreModule
+      EditorTypeName: Sirenix.OdinInspector.Editor.OdinEditor, Sirenix.OdinInspector.Editor
+    - DrawnTypeName: UnityEditor.Rendering.Settings.RenderPipelineGraphicsSettingsManager+CopyBySerialization,
+        UnityEditor.CoreModule
+      EditorTypeName: Sirenix.OdinInspector.Editor.OdinEditor, Sirenix.OdinInspector.Editor
+    - DrawnTypeName: UnityEditor.SceneManagement.AvatarConfigurationStage, UnityEditor.CoreModule
+      EditorTypeName: Sirenix.OdinInspector.Editor.OdinEditor, Sirenix.OdinInspector.Editor
+    - DrawnTypeName: UnityEditor.SceneManagement.MainStage, UnityEditor.CoreModule
+      EditorTypeName: Sirenix.OdinInspector.Editor.OdinEditor, Sirenix.OdinInspector.Editor
+    - DrawnTypeName: UnityEditor.SceneManagement.PrefabStage, UnityEditor.CoreModule
+      EditorTypeName: Sirenix.OdinInspector.Editor.OdinEditor, Sirenix.OdinInspector.Editor
+    - DrawnTypeName: UnityEditor.SceneManagement.StageNavigationManager, UnityEditor.CoreModule
+      EditorTypeName: Sirenix.OdinInspector.Editor.OdinEditor, Sirenix.OdinInspector.Editor
+    - DrawnTypeName: UnityEditor.Search.SearchDatabase, UnityEditor.QuickSearchModule
+      EditorTypeName: Sirenix.OdinInspector.Editor.OdinEditor, Sirenix.OdinInspector.Editor
+    - DrawnTypeName: UnityEditor.ShaderFoundry.ShaderContainer, UnityEditor.ShaderFoundryModule
+      EditorTypeName: Sirenix.OdinInspector.Editor.OdinEditor, Sirenix.OdinInspector.Editor
+    - DrawnTypeName: UnityEditor.ShortcutManagement.ContextManager+TagManager, UnityEditor.CoreModule
+      EditorTypeName: Sirenix.OdinInspector.Editor.OdinEditor, Sirenix.OdinInspector.Editor
+    - DrawnTypeName: UnityEditor.SpeedTree.Importer.SpeedTreeImporterOutputData,
+        UnityEditor.CoreModule
+      EditorTypeName: Sirenix.OdinInspector.Editor.OdinEditor, Sirenix.OdinInspector.Editor
+    - DrawnTypeName: UnityEditor.TextCore.Text.SerializedPropertyHolder, UnityEditor.TextCoreTextEngineModule
+      EditorTypeName: Sirenix.OdinInspector.Editor.OdinEditor, Sirenix.OdinInspector.Editor
+    - DrawnTypeName: UnityEditor.Toolbars.AIDropdownConfig, UnityEditor.EditorToolbarModule
+      EditorTypeName: Sirenix.OdinInspector.Editor.OdinEditor, Sirenix.OdinInspector.Editor
+    - DrawnTypeName: UnityEditor.Toolbars.EditorToolbarManager, UnityEditor.CoreModule
+      EditorTypeName: Sirenix.OdinInspector.Editor.OdinEditor, Sirenix.OdinInspector.Editor
+    - DrawnTypeName: UnityEditor.U2D.SpriteAtlasAsset, UnityEditor.CoreModule
+      EditorTypeName: Sirenix.OdinInspector.Editor.OdinEditor, Sirenix.OdinInspector.Editor
+    - DrawnTypeName: UnityEditor.U2D.Physics2D.MenuItems+CreateAssetEndNameEditAction,
+        UnityEditor.Physics2DModule
+      EditorTypeName: Sirenix.OdinInspector.Editor.OdinEditor, Sirenix.OdinInspector.Editor
+    - DrawnTypeName: UnityEditor.UIElements.EditorWindowViewData, UnityEditor.CoreModule
+      EditorTypeName: Sirenix.OdinInspector.Editor.OdinEditor, Sirenix.OdinInspector.Editor
+    - DrawnTypeName: UnityEditor.UIElements.PanelOwner, UnityEditor.UIElementsModule
+      EditorTypeName: Sirenix.OdinInspector.Editor.OdinEditor, Sirenix.OdinInspector.Editor
+    - DrawnTypeName: UnityEditor.UIElements.SerializableJsonDictionary, UnityEditor.CoreModule
+      EditorTypeName: Sirenix.OdinInspector.Editor.OdinEditor, Sirenix.OdinInspector.Editor
+    - DrawnTypeName: UnityEditor.UIElements.UIToolkitProjectSettings, UnityEditor.UIElementsModule
+      EditorTypeName: Sirenix.OdinInspector.Editor.OdinEditor, Sirenix.OdinInspector.Editor
+    - DrawnTypeName: UnityEditor.UIElements.Samples.UIElementsSnippetAsset, UnityEditor.UIElementsSamplesModule
+      EditorTypeName: Sirenix.OdinInspector.Editor.OdinEditor, Sirenix.OdinInspector.Editor
+    - DrawnTypeName: UnityEditor.UIElements.StyleSheets.ThemeAssetDefinitionState,
+        UnityEditor.CoreModule
+      EditorTypeName: Sirenix.OdinInspector.Editor.OdinEditor, Sirenix.OdinInspector.Editor
+    - DrawnTypeName: UnityEditor.VFX.VisualEffectImporter, UnityEditor.VFXModule
+      EditorTypeName: Sirenix.OdinInspector.Editor.OdinEditor, Sirenix.OdinInspector.Editor
+    - DrawnTypeName: UnityEditor.VFX.VisualEffectResource, UnityEditor.VFXModule
+      EditorTypeName: Sirenix.OdinInspector.Editor.OdinEditor, Sirenix.OdinInspector.Editor
+    - DrawnTypeName: UnityEditor.VFX.VisualEffectSubgraphBlock, UnityEditor.VFXModule
+      EditorTypeName: Sirenix.OdinInspector.Editor.OdinEditor, Sirenix.OdinInspector.Editor
+    - DrawnTypeName: UnityEditor.VFX.VisualEffectSubgraphOperator, UnityEditor.VFXModule
+      EditorTypeName: Sirenix.OdinInspector.Editor.OdinEditor, Sirenix.OdinInspector.Editor
+    - DrawnTypeName: UnityEditor.Web.EditorProjectAccess, UnityEditor.CoreModule
+      EditorTypeName: Sirenix.OdinInspector.Editor.OdinEditor, Sirenix.OdinInspector.Editor
+    - DrawnTypeName: UnityEditor.WebGL.WebGLStrippingInfo, UnityEditor.WebGL.Extensions
+      EditorTypeName: Sirenix.OdinInspector.Editor.OdinEditor, Sirenix.OdinInspector.Editor
+    - DrawnTypeName: UnityEditor.WebGL.WebsockifyEditorWrapper, UnityEditor.WebGL.Extensions
+      EditorTypeName: Sirenix.OdinInspector.Editor.OdinEditor, Sirenix.OdinInspector.Editor

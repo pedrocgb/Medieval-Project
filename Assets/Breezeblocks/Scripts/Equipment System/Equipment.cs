@@ -58,7 +58,7 @@ public static class EquipmentRules
             { EquipmentSlot.RightRing,   new[] { EquipTag.Ring } }
         };
 
-    public static bool CanEquip(EquipmentSlot slot, ItemDefinition def)
+    public static bool CanEquip(EquipmentSlot slot, Item def)
     {
         if (def == null || !def.Equipable || def.EquipTags == null || def.EquipTags.Length == 0)
             return false;

@@ -3,7 +3,7 @@ using System;
 [Serializable]
 public class ItemInstance
 {
-    public ItemDefinition Definition;
+    public Item Definition;
 
     // Top-left position of the item in its current grid (in cell coordinates)
     public int X;
@@ -17,7 +17,7 @@ public class ItemInstance
     // Back-reference to the grid that owns this item (null if not placed)
     [NonSerialized] public InventoryGrid OwnerGrid;
 
-    public ItemInstance(ItemDefinition definition, int stackCount = 1)
+    public ItemInstance(Item definition, int stackCount = 1)
     {
         Definition = definition;
         StackCount = Math.Clamp(stackCount, 1,

@@ -14,7 +14,7 @@ public class InventoryGridBehaviour : MonoBehaviour
     public InventoryGridView GridView => _gridView;
 
     [FoldoutGroup("Starting Items", expanded: true)]
-    [SerializeField] private List<ItemDefinition> _startingItemDefinitions;
+    [SerializeField] private List<Item> _startingItemDefinitions;
 
     public InventoryGrid Grid { get; private set; }
     #endregion
