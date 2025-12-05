@@ -2,8 +2,7 @@ using UnityEngine;
 
 public static class CarryWeightSettings
 {
-    public const float MaxOverburdenedSpeed = 0.75f;
-
+    #region Variables and Properties
     [System.Serializable]
     public class LoadConfig
     {
@@ -13,7 +12,7 @@ public static class CarryWeightSettings
         public float staminaPenalty = 1f;
         public bool canRun = true;
     }
-
+    public const float MaxOverburdenedSpeed = 0.75f;
     public static LoadConfig GetCurrentLoadConfig(CarryLoadStage Config)
     {
         switch (Config)
@@ -29,7 +28,11 @@ public static class CarryWeightSettings
                 return lightConfig;
         }
     }
+    #endregion
 
+    // ======================================================================
+
+    #region Load Configurations
     [Header("Load Configs")]
     public static LoadConfig lightConfig = new LoadConfig
     {
@@ -66,6 +69,9 @@ public static class CarryWeightSettings
         staminaPenalty = 4f,
         canRun = false
     };
+
+    // ======================================================================
+    #endregion
 }
 
 public enum CarryLoadStage

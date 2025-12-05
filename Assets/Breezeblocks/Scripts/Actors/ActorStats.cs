@@ -3,6 +3,7 @@ using Sirenix.OdinInspector;
 
 public abstract class ActorStats : ScriptableObject
 {
+    #region Main Attributes
     [FoldoutGroup("Main Attributes")]
     [SerializeField] private int _baseStrength = 8;
     public int BaseStrength => _baseStrength;
@@ -21,8 +22,13 @@ public abstract class ActorStats : ScriptableObject
     [FoldoutGroup("Main Attributes")]
     [SerializeField] private int _baseCharisma = 8;
     public int BaseCharisma => _baseCharisma;
+    #endregion
 
+    // ======================================================================
 
+    #region Secondary Attributes
+
+    // Health
     [FoldoutGroup("Stats")]
     [FoldoutGroup("Stats/Health")]
     [SerializeField] private float _baseHeadHealth = 10f;
@@ -37,6 +43,9 @@ public abstract class ActorStats : ScriptableObject
     [SerializeField] private float _baseLegsHealth = 25f;
     public float BaseLegsHealth => _baseLegsHealth;
 
+    // ======================================================================
+
+    // Movement
     [FoldoutGroup("Stats/Movement")]
     [SerializeField] private float _baseMoveSpeed = 2f;
     public float BaseMoveSpeed => _baseMoveSpeed;
@@ -50,6 +59,9 @@ public abstract class ActorStats : ScriptableObject
     [SerializeField] private float _baseDeceleration = 16f;
     public float BaseDeceleration => _baseDeceleration;
 
+    // ======================================================================
+
+    // Dodge
     [FoldoutGroup("Stats/Dodge")]
     [SerializeField] private float _baseDodgeCooldown = 1f;
     public float BaseDodgeCooldown => _baseDodgeCooldown;
@@ -66,9 +78,16 @@ public abstract class ActorStats : ScriptableObject
     [SerializeField] private float _baseDodgeFatigueCost = 10f;
     public float BaseDodgeFatigueCost => _baseDodgeFatigueCost;
 
+    // ======================================================================
+
+    // Carry weight
     [FoldoutGroup("Stats/Survival")]
     [SerializeField] private float _baseCarryWeight = 0f;
     public float BaseCarryWeight => _baseCarryWeight;
+
+    // ======================================================================
+
+    // Needs
     [FoldoutGroup("Stats/Survival")]
     [SerializeField] private float _baseThirst = 100f;
     public float BaseThirst => _baseThirst;
@@ -85,6 +104,10 @@ public abstract class ActorStats : ScriptableObject
     [SerializeField] private float _baseFatigue = 0f;
     public float BaseFatigue => _baseFatigue;
 
+    // ======================================================================
+
+
+    // Mental
     [FoldoutGroup("Stats/Mental")]
     [SerializeField] private float _baseSanity = 100f;
     public float BaseSanity => _baseSanity;
@@ -97,4 +120,6 @@ public abstract class ActorStats : ScriptableObject
     [FoldoutGroup("Stats/Mental")]
     [SerializeField] private float _baseIntoxication = 0f;
     public float BaseIntoxication => _baseIntoxication;
+
+    #endregion
 }

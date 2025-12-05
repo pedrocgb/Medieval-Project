@@ -1,3 +1,5 @@
+using ObjectPool;
+using Sirenix.OdinInspector;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -8,42 +10,47 @@ using UnityEngine.UI;
 /// </summary>
 public class InventoryGridView : MonoBehaviour
 {
-    [Header("References")]
-    [Tooltip("Behaviour that owns the InventoryGrid (e.g. PlayerInventory, ChestInventory, etc.).")]
-    public InventoryGridBehaviour gridSource;
-
-    [Tooltip("RectTransform where the grid is drawn. This can be the same object as this component or a child.")]
+    #region Variables and Properties
+    [FoldoutGroup("Components", expanded: true)]
+    [SerializeField] private InventoryGridBehaviour _gridSource;
+    public InventoryGridBehaviour GridSource => _gridSource;
+    [FoldoutGroup("Components", expanded: true)]
     [SerializeField] private RectTransform content;
 
-    [Header("Prefabs")]
-    [Tooltip("Prefab for a single slot cell (background). Must have an Image and RectTransform.")]
-    [SerializeField] private GameObject slotPrefab;
+    [FoldoutGroup("Prefab", expanded: true)]
+    [SerializeField] private string _slotPrefab;
+    [FoldoutGroup("Prefab", expanded: true)]
+    [SerializeField] private InventoryItemView _itemViewPrefab;
 
-    [Tooltip("Prefab for an item view. Must have InventoryItemView component.")]
-    [SerializeField] private InventoryItemView itemViewPrefab;
+    [FoldoutGroup("Layout", expanded: true)]
+    [SerializeField] private float _cellSize = 64f;
+    public float CellSize => _cellSize;
+    [FoldoutGroup("Layout", expanded: true)]
+    [SerializeField] private float  _cellSpacing = 2f;
 
-    [Header("Layout")]
-    [Tooltip("Size of one grid cell in UI units (pixels).")]
-    [SerializeField] private float cellSize = 64f;
-    [SerializeField] private float  cellSpacing = 2f; // not used in this version, but kept for future
-
-    [Header("Colors")]
-    [SerializeField] private Color normalSlotColor = Color.white;
-    [SerializeField] private Color validSlotColor = Color.green;
-    [SerializeField] private Color invalidSlotColor = Color.red;
+    [FoldoutGroup("Colors", expanded: true)]
+    [SerializeField] private Color _normalSlotColor = Color.white;
+    [FoldoutGroup("Colors", expanded: true)]
+    [SerializeField] private Color _validSlotColor = Color.green;
+    [FoldoutGroup("Colors", expanded: true)]
+    [SerializeField] private Color _invalidSlotColor = Color.red;
 
     private readonly List<GameObject> _slotInstances = new();
     private readonly List<InventoryItemView> _itemInstances = new();
-
-    // 2D array to quickly access slot Images by [x,y]
     private Image[,] _slotImages;
 
-    public float CellSize => cellSize;
-    public InventoryGrid Grid => gridSource != null ? gridSource.Grid : null;
+    public InventoryGrid Grid => _gridSource != null ? _gridSource.Grid : null;
+    #endregion
 
+    // ======================================================================
+
+    #region Grid Handler
+    /// <summary>
+    /// Rebuild inventory grid view.
+    /// </summary>
     public void Rebuild()
     {
-        if (gridSource == null || gridSource.Grid == null)
+        if (_gridSource == null || _gridSource.Grid == null)
         {
             Debug.LogWarning($"{name}: No gridSource or grid to rebuild from.");
             return;
@@ -57,13 +64,13 @@ public class InventoryGridView : MonoBehaviour
 
         ClearChildren();
 
-        var grid = gridSource.Grid;
+        var grid = _gridSource.Grid;
         int width = grid.Width;
         int height = grid.Height;
 
         // Set the visual size of the content rect, but DO NOT touch anchors/pivot.
-        float totalWidth = width * cellSize;
-        float totalHeight = height * cellSize;
+        float totalWidth = width * _cellSize;
+        float totalHeight = height * _cellSize;
         content.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, totalWidth);
         content.SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, totalHeight);
 
@@ -74,13 +81,13 @@ public class InventoryGridView : MonoBehaviour
         Vector2 pivot = content.pivot;
 
         // 1) Build background slots
-        if (slotPrefab != null)
+        if (_slotPrefab != null)
         {
             for (int x = 0; x < width; x++)
             {
                 for (int y = 0; y < height; y++)
                 {
-                    GameObject slotGO = Instantiate(slotPrefab, content);
+                    GameObject slotGO = ObjectPooler.instance.SpawnFromPool(_slotPrefab, content.position, Quaternion.identity);
                     _slotInstances.Add(slotGO);
 
                     RectTransform rt = slotGO.GetComponent<RectTransform>();
@@ -89,11 +96,11 @@ public class InventoryGridView : MonoBehaviour
                         rt.anchorMin = new Vector2(0.5f, 0.5f);
                         rt.anchorMax = new Vector2(0.5f, 0.5f);
                         rt.pivot = new Vector2(0.5f, 0.5f);
-                        rt.sizeDelta = new Vector2(cellSize, cellSize);
+                        rt.sizeDelta = new Vector2(_cellSize, _cellSize);
 
                         // Local "from left / from top" for this cell
-                        float xFromLeft = x * cellSize + cellSize * 0.5f;
-                        float yFromTop = y * cellSize + cellSize * 0.5f;
+                        float xFromLeft = x * _cellSize + _cellSize * 0.5f;
+                        float yFromTop = y * _cellSize + _cellSize * 0.5f;
 
                         // Convert to anchoredPosition relative to pivot
                         float anchoredX = xFromLeft - rect.width * pivot.x;
@@ -105,7 +112,7 @@ public class InventoryGridView : MonoBehaviour
                     Image img = slotGO.GetComponent<Image>();
                     if (img != null)
                     {
-                        img.color = normalSlotColor;
+                        img.color = _normalSlotColor;
                         _slotImages[x, y] = img;
                     }
                 }
@@ -113,17 +120,20 @@ public class InventoryGridView : MonoBehaviour
         }
 
         // 2) Build item views
-        if (itemViewPrefab != null)
+        if (_itemViewPrefab != null)
         {
             foreach (var item in grid.Items)
             {
-                InventoryItemView itemView = Instantiate(itemViewPrefab, content);
+                InventoryItemView itemView = Instantiate(_itemViewPrefab, content);
                 _itemInstances.Add(itemView);
-                itemView.Bind(item, cellSize);
+                itemView.Bind(item, _cellSize);
             }
         }
     }
 
+    /// <summary>
+    /// Clear inventory
+    /// </summary>
     private void ClearChildren()
     {
         foreach (var slot in _slotInstances)
@@ -164,7 +174,7 @@ public class InventoryGridView : MonoBehaviour
             return false;
         }
 
-        var grid = gridSource?.Grid;
+        var grid = _gridSource?.Grid;
         if (grid == null)
             return false;
 
@@ -178,28 +188,39 @@ public class InventoryGridView : MonoBehaviour
         float xFromLeft = localPoint.x + rect.width * pivot.x;
         float yFromTop = rect.height * (1f - pivot.y) - localPoint.y;
 
-        float gridWidthPx = width * cellSize;
-        float gridHeightPx = height * cellSize;
+        float gridWidthPx = width * _cellSize;
+        float gridHeightPx = height * _cellSize;
 
         // Check if inside grid bounds
         if (xFromLeft < 0 || xFromLeft > gridWidthPx || yFromTop < 0 || yFromTop > gridHeightPx)
             return false;
 
-        cellX = Mathf.FloorToInt(xFromLeft / cellSize);
-        cellY = Mathf.FloorToInt(yFromTop / cellSize);
+        cellX = Mathf.FloorToInt(xFromLeft / _cellSize);
+        cellY = Mathf.FloorToInt(yFromTop / _cellSize);
 
         if (cellX < 0 || cellY < 0 || cellX >= width || cellY >= height)
             return false;
 
         return true;
     }
+    #endregion
 
+    // ======================================================================
+
+    #region Item movement
+    /// <summary>
+    /// Try to move item in the grid.
+    /// </summary>
+    /// <param name="item"></param>
+    /// <param name="targetX"></param>
+    /// <param name="targetY"></param>
+    /// <returns></returns>
     public bool TryMoveItem(ItemInstance item, int targetX, int targetY)
     {
-        if (gridSource == null || gridSource.Grid == null || item == null)
+        if (_gridSource == null || _gridSource.Grid == null || item == null)
             return false;
 
-        bool moved = gridSource.Grid.TryMove(item, targetX, targetY);
+        bool moved = _gridSource.Grid.TryMove(item, targetX, targetY);
         if (moved)
         {
             Rebuild();
@@ -207,19 +228,34 @@ public class InventoryGridView : MonoBehaviour
         return moved;
     }
 
+    /// <summary>
+    /// Try to move item in the grid when object is rotated.
+    /// </summary>
+    /// <param name="item"></param>
+    /// <param name="targetX"></param>
+    /// <param name="targetY"></param>
+    /// <param name="targetRotation"></param>
+    /// <returns></returns>
     public bool TryMoveItemWithRotation(ItemInstance item, int targetX, int targetY, int targetRotation)
     {
-        if (gridSource == null || gridSource.Grid == null || item == null)
+        if (_gridSource == null || _gridSource.Grid == null || item == null)
             return false;
 
-        bool moved = gridSource.Grid.TryMoveAndRotate(item, targetX, targetY, targetRotation);
+        bool moved = _gridSource.Grid.TryMoveAndRotate(item, targetX, targetY, targetRotation);
         if (moved)
         {
             Rebuild();
         }
         return moved;
     }
+    #endregion
 
+    // ======================================================================
+
+    #region Preview Methods
+    /// <summary>
+    /// Clear all items highlights.
+    /// </summary>
     public void ClearHighlights()
     {
         if (_slotImages == null) return;
@@ -233,19 +269,26 @@ public class InventoryGridView : MonoBehaviour
             {
                 var img = _slotImages[x, y];
                 if (img != null)
-                    img.color = normalSlotColor;
+                    img.color = _normalSlotColor;
             }
         }
     }
 
+    /// <summary>
+    /// Preview the placement of the item on the grid.
+    /// </summary>
+    /// <param name="item"></param>
+    /// <param name="rotation"></param>
+    /// <param name="screenPosition"></param>
+    /// <param name="uiCamera"></param>
     public void PreviewPlacement(ItemInstance item, int rotation, Vector2 screenPosition, Camera uiCamera)
     {
         ClearHighlights();
 
-        if (item == null || gridSource == null || gridSource.Grid == null || _slotImages == null)
+        if (item == null || _gridSource == null || _gridSource.Grid == null || _slotImages == null)
             return;
 
-        var grid = gridSource.Grid;
+        var grid = _gridSource.Grid;
         var def = item.Definition;
         if (def == null) return;
 
@@ -271,7 +314,7 @@ public class InventoryGridView : MonoBehaviour
         bool hasMask = def.HasCustomShape;
         var mask = def.ShapeMask;
 
-        Color color = canPlace ? validSlotColor : invalidSlotColor;
+        Color color = canPlace ? _validSlotColor : _invalidSlotColor;
 
         for (int ox = 0; ox < srcW; ox++)
         {
@@ -295,6 +338,9 @@ public class InventoryGridView : MonoBehaviour
             }
         }
     }
+    #endregion
+
+    // ======================================================================
 
     private void OnEnable()
     {
@@ -307,4 +353,7 @@ public class InventoryGridView : MonoBehaviour
         if (InventoryUIManager.Instance != null)
             InventoryUIManager.Instance.UnregisterView(this);
     }
+
+    // ======================================================================
+
 }

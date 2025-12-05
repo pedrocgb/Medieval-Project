@@ -32,4 +32,6 @@ public static class Constants
     public const float RUN_STAMINA_THRESHOLD = 2f;
     public const float MAX_BREATH_TAKING_TIME = 10f;
     public const float STAMINA_COOLDOWN = 1.5f;
+    public const float DRAW_WALK_PENALTY = 3F;
+
 }

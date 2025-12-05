@@ -1,3 +1,4 @@
+using Sirenix.OdinInspector;
 using UnityEngine;
 using UnityEngine.Rendering.Universal;
 
@@ -5,47 +6,40 @@ using UnityEngine.Rendering.Universal;
 [RequireComponent(typeof(Light2D))]
 public class PlayerVisionLight : MonoBehaviour
 {
-    [Header("Shape")]
-    [Tooltip("Max radius when visionLevel01 = 1.")]
-    public float maxViewRadius = 8f;
+    #region Variables and Properties
+    [FoldoutGroup("Shape", expanded: true)]
+    [SerializeField] private float maxViewRadius = 8f;
+    [FoldoutGroup("Shape", expanded: true)]
+    [SerializeField] private float minViewRadius = 3f;
 
-    [Tooltip("Min radius when visionLevel01 = 0.")]
-    public float minViewRadius = 3f;
+    [FoldoutGroup("Shape", expanded: true)]
+    [SerializeField] [Range(0f, 360f)] public float viewAngle = 120f;
+    [FoldoutGroup("Shape", expanded: true)]
+    [SerializeField] [Range(0f, 1f)] public float innerRadiusFraction = 0.5f;
+    [FoldoutGroup("Shape", expanded: true)]
+    [SerializeField] [Range(0f, 1f)] public float innerAngleFraction = 0.3f;
 
-    [Tooltip("Vision cone angle in degrees. Use 360 for full-circle vision.")]
-    [Range(0f, 360f)]
-    public float viewAngle = 120f;
+    [FoldoutGroup("Orientation")]
+    [SerializeField] private bool lookAtMouse = true;
+    [FoldoutGroup("Orientation")]
+    [SerializeField] private float rotationSmoothing = 720f;
+    public float RotationSmoothing { get { return rotationSmoothing; } set { rotationSmoothing = value; } }
+    [FoldoutGroup("Orientation")]
+    [SerializeField] private float rotationOffset = -90f;
 
-    [Tooltip("Inner radius fraction of the outer radius (for soft falloff).")]
-    [Range(0f, 1f)]
-    public float innerRadiusFraction = 0.5f;
+    [FoldoutGroup("Orientation")]
+    [SerializeField] [ReadOnly] private float visionLevel01 = 1f;
 
-    [Tooltip("Inner angle fraction of the outer angle (for soft edge).")]
-    [Range(0f, 1f)]
-    public float innerAngleFraction = 0.3f;
-
-    [Header("Orientation")]
-    [Tooltip("If true, light aims at mouse. If false, use externalDirection.")]
-    public bool lookAtMouse = true;
-
-    [Tooltip("Turn speed in degrees per second. Higher = snappier, 0 = instant snap.")]
-    public float rotationSmoothing = 720f;
-
-    [Tooltip("Offset in degrees, because Light2D's 'forward' is usually up.")]
-    public float rotationOffset = -90f;
-
-    [Header("Dynamic Vision Level (0–1)")]
-    [Range(0f, 1f)]
-    [Tooltip("0 = minViewRadius, 1 = maxViewRadius. You can drive this from game code.")]
-    public float visionLevel01 = 1f;
-
-    [Header("Fallback / External Direction")]
-    [Tooltip("Used if lookAtMouse == false. Should be normalized.")]
-    public Vector2 externalDirection = Vector2.right;
+    [FoldoutGroup("Orientation")]
+    [SerializeField] private Vector2 externalDirection = Vector2.right;
 
     private Light2D _light2D;
     private Camera _cam;
+    #endregion
 
+    // ==============================================================
+
+    #region Unity Callbacks
     private void OnEnable()
     {
         CacheRefs();
@@ -91,26 +85,37 @@ public class PlayerVisionLight : MonoBehaviour
         UpdateRotation(Time.deltaTime);
         ApplyShapeNow();
     }
+    #endregion
 
-    // ------------------------------
-    // Public API
-    // ------------------------------
+    // ==============================================================
 
+    #region Setters
+    /// <summary>
+    /// Sets the vision level in the range [0, 1].
+    /// </summary>
+    /// <param name="t"></param>
     public void SetVisionLevel01(float t)
     {
         visionLevel01 = Mathf.Clamp01(t);
     }
 
+    /// <summary>
+    /// Sets the external direction for the light to face.
+    /// </summary>
+    /// <param name="dir"></param>
     public void SetExternalDirection(Vector2 dir)
     {
         if (dir.sqrMagnitude > 0.0001f)
             externalDirection = dir.normalized;
     }
+    #endregion
 
-    // ------------------------------
-    // Internal helpers
-    // ------------------------------
+    // ==============================================================
 
+    #region Private Methods
+    /// <summary>
+    /// Caches component references.
+    /// </summary>
     private void CacheRefs()
     {
         if (_light2D == null)
@@ -120,6 +125,10 @@ public class PlayerVisionLight : MonoBehaviour
             _cam = Camera.main;
     }
 
+    /// <summary>
+    /// Updates the rotation of the light.
+    /// </summary>
+    /// <param name="deltaTime"></param>
     private void UpdateRotation(float deltaTime)
     {
         Vector2 dir;
@@ -161,6 +170,9 @@ public class PlayerVisionLight : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Applies rotation immediately (used in edit mode).
+    /// </summary>
     private void ApplyRotationImmediate()
     {
         Vector2 dir;
@@ -188,6 +200,9 @@ public class PlayerVisionLight : MonoBehaviour
         transform.rotation = Quaternion.Euler(0f, 0f, angle);
     }
 
+    /// <summary>
+    /// Applies the shape of the light based on vision level.
+    /// </summary>
     private void ApplyShapeNow()
     {
         if (_light2D == null)
@@ -201,4 +216,7 @@ public class PlayerVisionLight : MonoBehaviour
         _light2D.pointLightOuterAngle = viewAngle;
         _light2D.pointLightInnerAngle = viewAngle * innerAngleFraction;
     }
+    #endregion
+
+    // ==============================================================
 }

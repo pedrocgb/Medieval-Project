@@ -82,12 +82,12 @@ public class ItemContextMenuUI : MonoBehaviour
 
     public void ShowForEquipmentSlot(EquipmentSlotView slotView, Vector2 screenPosition)
     {
-        if (slotView == null || slotView.equipmentManager == null)
+        if (slotView == null || slotView.EquipmentManager == null)
             return;
 
         _inventoryView = null;
         _equipmentSlotView = slotView;
-        _item = slotView.equipmentManager.GetEquipped(slotView.slot);
+        _item = slotView.EquipmentManager.GetEquipped(slotView.Slot);
 
         if (_item == null || _item.Definition == null)
             return;
@@ -184,7 +184,7 @@ public class ItemContextMenuUI : MonoBehaviour
         }
 
         var gridView = _inventoryView.GridView;
-        var gridBehaviour = gridView != null ? gridView.gridSource : null;
+        var gridBehaviour = gridView != null ? gridView.GridSource : null;
         var fromGrid = gridBehaviour != null ? gridBehaviour.Grid : null;
 
         if (fromGrid == null)
@@ -210,7 +210,7 @@ public class ItemContextMenuUI : MonoBehaviour
             return;
         }
 
-        var mgr = _equipmentSlotView.equipmentManager;
+        var mgr = _equipmentSlotView.EquipmentManager;
         if (mgr == null)
         {
             Hide();
@@ -233,10 +233,10 @@ public class ItemContextMenuUI : MonoBehaviour
 
         if (grid.TryFindSpaceFor(_item, out int x, out int y))
         {
-            bool success = mgr.TryUnequipToInventory(_equipmentSlotView.slot, grid, x, y);
-            if (success && mainInventory.gridView != null)
+            bool success = mgr.TryUnequipToInventory(_equipmentSlotView.Slot, grid, x, y);
+            if (success && mainInventory.GridView != null)
             {
-                mainInventory.gridView.Rebuild();
+                mainInventory.GridView.Rebuild();
             }
         }
         else
@@ -252,7 +252,7 @@ public class ItemContextMenuUI : MonoBehaviour
         if (_inventoryView != null && _item != null)
         {
             var gridView = _inventoryView.GridView;
-            var gridBehaviour = gridView != null ? gridView.gridSource : null;
+            var gridBehaviour = gridView != null ? gridView.GridSource : null;
             var grid = gridBehaviour != null ? gridBehaviour.Grid : null;
 
             if (grid != null)
@@ -263,10 +263,10 @@ public class ItemContextMenuUI : MonoBehaviour
         }
         else if (_equipmentSlotView != null && _item != null)
         {
-            var mgr = _equipmentSlotView.equipmentManager;
+            var mgr = _equipmentSlotView.EquipmentManager;
             if (mgr != null)
             {
-                var removed = mgr.Equipment.Unequip(_equipmentSlotView.slot);
+                var removed = mgr.Equipment.Unequip(_equipmentSlotView.Slot);
                 if (removed != null)
                 {
                     mgr.NotifyEquipmentChanged();

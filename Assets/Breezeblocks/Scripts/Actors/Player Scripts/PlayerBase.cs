@@ -5,12 +5,14 @@ using UnityEngine;
 
 public class PlayerBase : ActorBase
 {
+    #region Variables and Properties
     [FoldoutGroup("Stats")]
     [SerializeField] private PlayerStats _playerStats;
     public PlayerStats PlayerStats => _playerStats;
 
     private Player _controlScheme;
     public Player ControlScheme => _controlScheme;
+    #endregion
 
     // ==============================================================
 

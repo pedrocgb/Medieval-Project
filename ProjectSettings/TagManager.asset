@@ -42,8 +42,17 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
-  - name: Buildings
+  - name: Scenario
     uniqueID: 3725522199
+    locked: 0
+  - name: Buildings and Objects
+    uniqueID: 2639398249
+    locked: 0
+  - name: Entites
+    uniqueID: 1547857541
+    locked: 0
+  - name: UI
+    uniqueID: 3447678069
     locked: 0
   m_RenderingLayers:
   - Default

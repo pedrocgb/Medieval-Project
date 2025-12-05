@@ -1,4 +1,5 @@
 using UnityEngine;
+using CharactersStats;
 
 public class Debuggers : MonoBehaviour
 {
@@ -6,7 +7,7 @@ public class Debuggers : MonoBehaviour
 
     private void Awake()
     {
-        playerbase = FindObjectOfType<PlayerBase>();
+        playerbase = FindFirstObjectByType<PlayerBase>();
     }
 
     // Update is called once per frame
@@ -14,9 +15,8 @@ public class Debuggers : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.K))
         {
-            playerbase.UpdateStrengthAttribute(playerbase.PlayerStats);
-            playerbase.UpdateDexterityAttribute(playerbase.PlayerStats);
-            playerbase.UpdateConstitutionAttribute(playerbase.PlayerStats);
+            Debug.Log("Player Head protection: " + playerbase.GetStat(StatId.HeadProtection).Value);
+            Debug.Log("Player Cold res: " + playerbase.GetStat(StatId.ColdResistance).Value);
         }
     }
 }

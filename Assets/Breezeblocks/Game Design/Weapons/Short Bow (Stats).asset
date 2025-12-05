@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 604ea12531c5436499ab1c146d7d5e92, type: 3}
+  m_Name: Short Bow (Stats)
+  m_EditorClassIdentifier: Assembly-CSharp::BowStats
+  _arrowPrefab: Arrow
+  _minDistance: 0.5
+  _maxDistance: 5
+  _maxDrawTime: 2
+  _drawStaminaDrain: 12
+  _minArrowSpeed: 4.5
+  _maxArrowSpeed: 6
+  _minDamageMult: 0.2
+  _maxDamageMult: 1
+  _maxSpreadAngle: 20
+  _minSpreadAngle: 2

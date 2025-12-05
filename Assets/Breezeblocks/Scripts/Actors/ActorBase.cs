@@ -1,8 +1,9 @@
 using CharactersStats;
 using Sirenix.OdinInspector;
+using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class ActorBase : MonoBehaviour
+public abstract class ActorBase : MonoBehaviour, IStatCollection
 {
     #region Variables and Properties
     //// Attributes
@@ -106,6 +107,7 @@ public abstract class ActorBase : MonoBehaviour
     protected CharacterStat _staminaRegen;
 
     protected float _currentStamina;
+    public float CurrentStamina => _currentStamina;
     private float _consumedStaminaTimeStamp = 0f;
     private float _takeBreathElapsedTime = 0f;
 
@@ -135,23 +137,56 @@ public abstract class ActorBase : MonoBehaviour
     public CharacterStat MaxCarryWeight => _maxCarryWeight;
     public float CurrentCarryWeight => _currentCarryWeight;
 
-    //// Defensive Stats
-    protected CharacterStat _headProtection;
-    protected CharacterStat _torsoProtection;
-    protected CharacterStat _armsProtection;
-    protected CharacterStat _legsProtection;
+    //// Runtime Stats
+    private Dictionary<StatId, CharacterStat> _stats = new();
 
+    /// Protection Stats
+    protected CharacterStat _headProtection;
+    protected CharacterStat _headNatureProtection;
+    protected CharacterStat _headMagicalProtection;
+    protected CharacterStat _bodyProtection;
+    protected CharacterStat _bodyNatureProtection;
+    protected CharacterStat _bodyMagicalProtection;
+    protected CharacterStat _armsProtection;
+    protected CharacterStat _armsNatureProtection;
+    protected CharacterStat _armsMagicalProtection;
+    protected CharacterStat _legsProtection;
+    protected CharacterStat _legsNatureProtection;
+    protected CharacterStat _legsMagicalProtection;
+
+    /// Resistance Stats
     protected CharacterStat _physicalResistance;
-    protected CharacterStat _slashResistance;
-    protected CharacterStat _pierceResistance;
+    protected CharacterStat _slashingResistance;
+    protected CharacterStat _piercingResistance;
     protected CharacterStat _bluntResistance;
 
+    protected CharacterStat _natureResistance;
     protected CharacterStat _fireResistance;
     protected CharacterStat _coldResistance;
-    protected CharacterStat _electricResistance;
-    protected CharacterStat _acidResistance;
+    protected CharacterStat _lightningResistance;
+    protected CharacterStat _poisonResistance;
 
+    protected CharacterStat _magicalResistance;
+    protected CharacterStat _necroticResistance;
+    protected CharacterStat _radiantResistance;
+    protected CharacterStat _psychicResistance;
 
+    /// Weapon Stats
+    protected CharacterStat _attackSpeed;
+
+    /// Damage Stats
+    protected CharacterStat _slashingDamage;
+    protected CharacterStat _piercingDamage;
+    protected CharacterStat _bluntDamage;
+
+    /// Weapons and Equipments
+    private bool _isDrawingBow = false;
+    public bool IsDrawingBow { get  { return _isDrawingBow; } set { _isDrawingBow = value; } }
+
+    //// Components
+    [FoldoutGroup("Components", expanded: true)]
+    [SerializeField] protected ActorUI _ui;
+    public ActorUI UI => _ui;
     #endregion
 
     // ======================================================================
@@ -169,6 +204,37 @@ public abstract class ActorBase : MonoBehaviour
         _currentIntoxicationDrain = new CharacterStat(_baseIntoxicationDrain);
         _currentMoraleRegen = new CharacterStat(_baseMoraleRegen);
         _currentSanityRegen = new CharacterStat(_baseSanityRegen);
+
+        _headProtection = new CharacterStat(0f);
+        _headNatureProtection = new CharacterStat(0f);
+        _headMagicalProtection = new CharacterStat(0f);
+        _bodyProtection = new CharacterStat(0f);
+        _bodyNatureProtection = new CharacterStat(0f);
+        _bodyMagicalProtection = new CharacterStat(0f);
+        _armsProtection = new CharacterStat(0f);
+        _armsNatureProtection = new CharacterStat(0f);
+        _armsMagicalProtection = new CharacterStat(0f);
+        _legsProtection = new CharacterStat(0f);
+        _legsNatureProtection = new CharacterStat(0f);
+        _legsMagicalProtection = new CharacterStat(0f);
+
+        _physicalResistance = new CharacterStat(0f);
+        _slashingResistance = new CharacterStat(0f);
+        _piercingResistance = new CharacterStat(0f);
+        _bluntResistance = new CharacterStat(0f);
+
+        _natureResistance = new CharacterStat(0f);
+        _fireResistance = new CharacterStat(0f);
+        _coldResistance = new CharacterStat(0f);
+        _lightningResistance = new CharacterStat(0f);
+        _poisonResistance = new CharacterStat(0f);
+
+        _magicalResistance = new CharacterStat(0f);
+        _necroticResistance = new CharacterStat(0f);
+        _radiantResistance = new CharacterStat(0f);
+        _psychicResistance = new CharacterStat(0f);
+
+        RegisterStats();
     }
 
     protected virtual void Update()
@@ -183,6 +249,9 @@ public abstract class ActorBase : MonoBehaviour
     // =====================================================================
 
     #region Time Checkers
+    /// <summary>
+    /// Check when a second has passed.
+    /// </summary>
     private void SecondChecker()
     {
         _secondTimer += Time.deltaTime;
@@ -197,6 +266,9 @@ public abstract class ActorBase : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Check when a fraction of a second has passed.
+    /// </summary>
     private void FractionChecker()
     {
         _fractionTimer += Time.deltaTime;
@@ -209,6 +281,9 @@ public abstract class ActorBase : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Check every frame for delta time related updates.
+    /// </summary>
     private void DeltaTimeChecker()
     {
          ElapseBreathTaking();
@@ -217,17 +292,89 @@ public abstract class ActorBase : MonoBehaviour
 
     // ======================================================================
 
+    #region Stats Methods
+    /// <summary>
+    /// Register all stats in the dictionary for easy access.
+    /// </summary>
+    protected void RegisterStats()
+    {
+        _stats = new Dictionary<StatId, CharacterStat>
+        {
+            { StatId.HeadProtection, _headProtection },
+            { StatId.HeadNatureProtection, _headNatureProtection },
+            { StatId.HeadMagicalProtection, _headMagicalProtection },
+            { StatId.BodyProtection, _bodyProtection },
+            { StatId.BodyNatureProtection, _bodyNatureProtection },
+            { StatId.BodyMagicalProtection, _bodyMagicalProtection },
+            { StatId.ArmsProtection, _armsProtection },
+            { StatId.ArmsNatureProtection, _armsNatureProtection },
+            { StatId.ArmsMagicalProtection, _armsMagicalProtection },
+            { StatId.LegsProtection, _legsProtection },
+            { StatId.LegsNatureProtection, _legsNatureProtection },
+            { StatId.LegsMagicalProtection, _legsMagicalProtection },
+
+            { StatId.PhysicalResistance, _physicalResistance },
+            { StatId.SlashingResistance, _slashingResistance },
+            { StatId.PiercingResistance, _piercingResistance },
+            { StatId.BluntResistance, _bluntResistance },
+
+            { StatId.NatureResistance, _natureResistance },
+            { StatId.FireResistance, _fireResistance },
+            { StatId.ColdResistance, _coldResistance },
+            { StatId.LightningResistance, _lightningResistance },
+            { StatId.PoisonResistance, _poisonResistance },
+
+            { StatId.MagicalResistance, _magicalResistance },
+            { StatId.NecroticResistance, _necroticResistance },
+            { StatId.RadiantResistance, _radiantResistance },
+            { StatId.PsychicResistance, _psychicResistance },
+        };
+
+        Debug.Log(_stats.Count + " stats registered for " + gameObject.name);
+    }
+
+    /// <summary>
+    /// Get a stat by its ID.
+    /// </summary>
+    /// <param name="id"></param>
+    /// <returns></returns>
+    public CharacterStat GetStat(StatId id)
+    {
+        return _stats.TryGetValue(id, out var stat) ? stat : null;
+    }
+
+    /// <summary>
+    /// Get all stats in the collection.
+    /// </summary>
+    public IEnumerable<CharacterStat> AllStats => _stats.Values;
+    #endregion
+
+    // ======================================================================
+
+    #region Attribute Update Methods
+    /// <summary>
+    /// Update Strength related stats.
+    /// </summary>
+    /// <param name="stats"></param>
     public virtual void UpdateStrengthAttribute(ActorStats stats)
     {
         _maxCarryWeight = new CharacterStat(stats.BaseCarryWeight + (_strength.Value * Constants.WEIGHT_PER_STRENGTH));
     }
 
+    /// <summary>
+    /// Update Dexterity related stats.
+    /// </summary>
+    /// <param name="stats"></param>
     public virtual void UpdateDexterityAttribute(ActorStats stats)
     {
         _moveSpeed = new CharacterStat(stats.BaseMoveSpeed + (_dexterity.Value * Constants.MOVESPEED_PER_DEXTERITY));
         _runMultiplier = new CharacterStat(stats.BaseRunMultiplier + (_dexterity.Value * Constants.RUNMULTIPLIER_PER_DEXTERITY));
     }
 
+    /// <summary>
+    /// Update Constitution related stats.
+    /// </summary>
+    /// <param name="stats"></param>
     public virtual void UpdateConstitutionAttribute(ActorStats stats)
     {
         _headHealth = new CharacterStat(stats.BaseHeadHealth + (_constitution.Value * Constants.HEAD_HEALTH_PER_CONSTITUTION));
@@ -240,10 +387,14 @@ public abstract class ActorBase : MonoBehaviour
         _maxStamina = new CharacterStat(stats.BaseStamina + (_constitution.Value * Constants.STAMINA_PER_CONSTITUTION));
         _maxFatigue = new CharacterStat(stats.BaseFatigue + (_constitution.Value * Constants.FATIGUE_PER_CONSTITUTION));
     }
+    #endregion
 
     // ======================================================================
 
     #region Passive Stat Changes
+    /// <summary>
+    /// Passive Thirst Gain over time.
+    /// </summary>
     protected virtual void PassiveThirstGain()
     {
         // Thirst Drain
@@ -254,6 +405,9 @@ public abstract class ActorBase : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Passive Hunger Gain over time.
+    /// </summary>
     protected virtual void PassiveHungerGain()
     {
         // Hunger Drain
@@ -264,6 +418,9 @@ public abstract class ActorBase : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Passive Fatigue Drain over time.
+    /// </summary>
     protected virtual void PassiveFatigueDrain()
     {
         // Fatigue Drain
@@ -274,6 +431,9 @@ public abstract class ActorBase : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Passive Stamina Regen over time.
+    /// </summary>
     protected virtual void PassiveStaminaRegen()
     {
         // Stamina Regen
@@ -289,6 +449,9 @@ public abstract class ActorBase : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Handle Stamina Cooldown after consumption.
+    /// </summary>
     protected virtual void StaminaCooldownHandler()
     {
         if (_consumedStamina && Time.time >= _consumedStaminaTimeStamp)
@@ -301,6 +464,10 @@ public abstract class ActorBase : MonoBehaviour
     // ======================================================================
 
     #region Active Stat Changes
+    /// <summary>
+    /// Drain Stamina by a certain amount.
+    /// </summary>
+    /// <param name="amount"></param>
     public virtual void DrainStamina(float amount)
     {
         if (_staminaDepleted) return;
@@ -316,6 +483,9 @@ public abstract class ActorBase : MonoBehaviour
         
     }
 
+    /// <summary>
+    /// Starts breath taking when stamina is depleted.
+    /// </summary>
     protected void TakeBreath()
     {
         _staminaDepleted = true;
@@ -323,6 +493,9 @@ public abstract class ActorBase : MonoBehaviour
         _takeBreathElapsedTime = 0f;
     }
 
+    /// <summary>
+    /// Elapse the breath taking time.
+    /// </summary>
     private void ElapseBreathTaking()
     {
         if (_takingBreath)
@@ -334,6 +507,11 @@ public abstract class ActorBase : MonoBehaviour
         }  
     }
 
+    /// <summary>
+    /// Check if the elapsed take breath time has passed a certain value.
+    /// </summary>
+    /// <param name="Value"></param>
+    /// <returns></returns>
     public bool CheckElapsedTakeBreathTime(float Value)
     {
         if (_takingBreath)
@@ -347,6 +525,10 @@ public abstract class ActorBase : MonoBehaviour
         return false;
     }
 
+    /// <summary>
+    /// Drain Fatigue by a certain amount.
+    /// </summary>
+    /// <param name="amount"></param>
     public virtual void DrainFatigue(float amount)
     {
         _currentFatigue -= (amount * _currentLoadConfig.fatiguePenalty);
@@ -357,6 +539,10 @@ public abstract class ActorBase : MonoBehaviour
     // ======================================================================
 
     #region Movement Stat Changes
+    /// <summary>
+    /// Check if the actor can sprint.
+    /// </summary>
+    /// <returns></returns>
     public virtual bool CanSprint()
     {
         if (CheckElapsedTakeBreathTime(Constants.RUN_STAMINA_THRESHOLD) && _currentLoadConfig.canRun && !StaminaDepleted)
@@ -365,16 +551,25 @@ public abstract class ActorBase : MonoBehaviour
         return false;
     }
 
+    /// <summary>
+    /// Drain Sprint Stamina over time.
+    /// </summary>
     public virtual void DrainSprintStamina()
     {
         DrainStamina((_runStaminaDrain * _currentLoadConfig.staminaPenalty) * Time.deltaTime);
     }
 
+    /// <summary>
+    /// Drain Sprint Fatigue over time.
+    /// </summary>
     public virtual void DrainSprintFatigue()
     {
         DrainFatigue((_sprintFatigueDrain * _currentLoadConfig.fatiguePenalty) * Time.deltaTime);
     }
 
+    /// <summary>
+    /// Drain Walk Fatigue over time.
+    /// </summary>
     public virtual void DrainWalkFatigue()
     {
         DrainFatigue((_walkFatigueDrain * _currentLoadConfig.fatiguePenalty) * Time.deltaTime);
@@ -384,6 +579,10 @@ public abstract class ActorBase : MonoBehaviour
     // ======================================================================
 
     #region Dodge Methods
+    /// <summary>
+    /// Check if the actor can dodge.
+    /// </summary>
+    /// <returns></returns>
     public bool CanDodge()
     {
         if (_currentStamina >= _dodgeStaminaCost.Value * _currentLoadConfig.staminaPenalty && !StaminaDepleted)
@@ -392,11 +591,17 @@ public abstract class ActorBase : MonoBehaviour
         return false;
     }
 
+    /// <summary>
+    /// Drain Dodge Stamina cost.
+    /// </summary>
     public virtual void DrainDodgeStamina()
     {
         DrainStamina((_dodgeStaminaCost.Value * _currentLoadConfig.staminaPenalty));
     }
 
+    /// <summary>
+    /// Drain Dodge Fatigue cost.
+    /// </summary>
     public virtual void DrainDodgeFatigue()
     {
         DrainFatigue((_dodgeFatigueCost.Value * _currentLoadConfig.fatiguePenalty));
@@ -406,6 +611,10 @@ public abstract class ActorBase : MonoBehaviour
     // ======================================================================
 
     #region Weight System Methods
+    /// <summary>
+    /// Update the current carry load stage and config.
+    /// </summary>
+    /// <param name="newStage"></param>
     public void UpdateLoadStage(CarryLoadStage newStage)
     {
         _currentLoadStage = newStage;

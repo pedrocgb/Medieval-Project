@@ -1,29 +1,29 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
+using Sirenix.OdinInspector;
 
 public class EquipmentSlotView : MonoBehaviour,
       IBeginDragHandler, IDragHandler, IEndDragHandler,
     IPointerEnterHandler, IPointerExitHandler, IPointerClickHandler
 {
-    [Header("Slot")]
-    public EquipmentSlot slot;
+    #region Variables and Properties
+    [FoldoutGroup("Slot", expanded: true)]
+    [SerializeField] EquipmentSlot slot;
+    public EquipmentSlot Slot => slot;
 
-    [Header("References")]
-    public EquipmentManager equipmentManager;
+    [FoldoutGroup("Player's Equipment Manager", expanded: true)]
+    [SerializeField] private EquipmentManager equipmentManager;
+    public EquipmentManager EquipmentManager => equipmentManager;
 
-    [Header("UI")]
-    [Tooltip("Image used to display the equipped item icon.")]
-    public Image iconImage;
-
-    [Tooltip("Optional background / empty sprite when slot is empty.")]
-    public Sprite emptySprite;
-
-    [Tooltip("RectTransform of the draggable icon (usually the same as iconImage's RectTransform).")]
-    public RectTransform iconRect;
-
-    [Tooltip("CanvasGroup on the icon for drag transparency / raycasts.")]
-    public CanvasGroup iconCanvasGroup;
+    [FoldoutGroup("Components", expanded: true)]
+    [SerializeField] private Image iconImage;
+    [FoldoutGroup("Components", expanded: true)]
+    [SerializeField] private Sprite emptySprite;
+    [FoldoutGroup("Components", expanded: true)]
+    [SerializeField] private RectTransform iconRect;
+    [FoldoutGroup("Components", expanded: true)]
+    [SerializeField] private CanvasGroup iconCanvasGroup;
 
     // Drag state
     private bool _isDragging;
@@ -33,6 +33,9 @@ public class EquipmentSlotView : MonoBehaviour,
     private Camera _lastDragCamera;
 
     private InventoryGridView _currentHoverView;
+    #endregion
+
+    // ==============================================================
 
 
     private void OnEnable()
@@ -54,6 +57,11 @@ public class EquipmentSlotView : MonoBehaviour,
         }
     }
 
+    // ==============================================================
+
+    /// <summary>
+    /// Refreshes the icon based on the currently equipped item.
+    /// </summary>
     public void Refresh()
     {
         if (iconImage == null || equipmentManager == null)
@@ -86,11 +94,22 @@ public class EquipmentSlotView : MonoBehaviour,
         }
     }
 
+    /// <summary>
+    /// Gets the currently equipped item in this slot.
+    /// </summary>
+    /// <returns></returns>
     private ItemInstance GetEquippedItem()
     {
         return equipmentManager != null ? equipmentManager.GetEquipped(slot) : null;
     }
 
+    // ==============================================================
+
+    #region Drag Methods
+    /// <summary>
+    /// Begins dragging the equipped item icon.
+    /// </summary>
+    /// <param name="eventData"></param>
     public void OnBeginDrag(PointerEventData eventData)
     {
         ItemTooltipUI.Instance?.Hide();
@@ -118,6 +137,10 @@ public class EquipmentSlotView : MonoBehaviour,
         _lastDragScreenPos = eventData.position;
         _lastDragCamera = eventData.pressEventCamera;
     }
+    /// <summary>
+    /// Drags the equipped item icon.
+    /// </summary>
+    /// <param name="eventData"></param>
     public void OnDrag(PointerEventData eventData)
     {
         if (!_isDragging || iconRect == null)
@@ -166,6 +189,10 @@ public class EquipmentSlotView : MonoBehaviour,
             );
         }
     }
+    /// <summary>
+    /// Ends dragging the equipped item icon.
+    /// </summary>
+    /// <param name="eventData"></param>
     public void OnEndDrag(PointerEventData eventData)
     {
         if (!_isDragging)
@@ -200,9 +227,9 @@ public class EquipmentSlotView : MonoBehaviour,
             targetView = eventData.pointerEnter.GetComponentInParent<InventoryGridView>();
         }
 
-        if (targetView != null && targetView.gridSource != null)
+        if (targetView != null && targetView.GridSource != null)
         {
-            var targetGrid = targetView.gridSource.Grid;
+            var targetGrid = targetView.GridSource.Grid;
             if (targetGrid != null &&
                 targetView.TryGetCellFromScreenPoint(
                     eventData.position,
@@ -239,7 +266,15 @@ public class EquipmentSlotView : MonoBehaviour,
             _currentHoverView = null;
         }
     }
+    #endregion
 
+    // ==============================================================
+
+    #region On Pointer Methods
+    /// <summary>
+    /// Shows the tooltip for the equipped item.
+    /// </summary>
+    /// <param name="eventData"></param>
     public void OnPointerEnter(PointerEventData eventData)
     {
         var item = GetEquippedItem();
@@ -247,10 +282,18 @@ public class EquipmentSlotView : MonoBehaviour,
 
         ItemTooltipUI.Instance?.Show(item, eventData.position);
     }
+    /// <summary>
+    /// Hides the tooltip.
+    /// </summary>
+    /// <param name="eventData"></param>
     public void OnPointerExit(PointerEventData eventData)
     {
         ItemTooltipUI.Instance?.Hide();
     }
+    /// <summary>
+    /// Handles right-click to show the context menu for this equipment slot.
+    /// </summary>
+    /// <param name="eventData"></param>
     public void OnPointerClick(PointerEventData eventData)
     {
         if (eventData.button != PointerEventData.InputButton.Right)
@@ -269,5 +312,7 @@ public class EquipmentSlotView : MonoBehaviour,
             menu.ShowForEquipmentSlot(this, eventData.position);
         }
     }
+    #endregion
 
+    // ==============================================================
 }

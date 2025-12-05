@@ -16,6 +16,15 @@ MonoBehaviour:
   DisplayName: Helmet
   Description: A simple hlemet
   TypeName: 
+  _statModifiers:
+  - Stat: 0
+    ModType: 100
+    Value: 3
+    Order: 0
+  - Stat: 18
+    ModType: 100
+    Value: 25
+    Order: 0
   Icon: {fileID: 6359975695365754155, guid: 80b36ada7346ac042b341159655af162, type: 3}
   Width: 2
   Height: 2

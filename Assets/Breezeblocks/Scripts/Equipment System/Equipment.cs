@@ -85,14 +85,27 @@ public static class EquipmentRules
 [Serializable]
 public class EquipmentSet
 {
+    /// <summary>
+    /// Equipped items per slot.
+    /// </summary>
     private readonly Dictionary<EquipmentSlot, ItemInstance> _slots = new();
 
+    /// <summary>
+    /// Gets the item equipped in the given slot (or null).
+    /// </summary>
+    /// <param name="slot"></param>
+    /// <returns></returns>
     public ItemInstance Get(EquipmentSlot slot)
     {
         _slots.TryGetValue(slot, out var item);
         return item;
     }
 
+    /// <summary>
+    /// Unequips the item in the given slot and returns it (or null).
+    /// </summary>
+    /// <param name="slot"></param>
+    /// <returns></returns>
     public ItemInstance Unequip(EquipmentSlot slot)
     {
         if (!_slots.TryGetValue(slot, out var item) || item == null)
@@ -102,6 +115,11 @@ public class EquipmentSet
         return item;
     }
 
+    /// <summary>
+    /// Forcefully sets the given item into the slot, overwriting any existing item.
+    /// </summary>
+    /// <param name="slot"></param>
+    /// <param name="item"></param>
     public void ForceSet(EquipmentSlot slot, ItemInstance item)
     {
         _slots[slot] = item;
@@ -167,9 +185,38 @@ public class EquipmentSet
         item.OwnerGrid = null;
         _slots[slot] = item;
 
+        
+
         return true;
     }
 
+    /// <summary>
+    /// Directly equips an item into the given slot, overwriting any existing item.
+    /// </summary>
+    /// <param name="slot"></param>
+    /// <param name="item"></param>
+    /// <returns></returns>
+    public bool TryEquipDirect(EquipmentSlot slot, ItemInstance item)
+    {
+        if (item == null || item.Definition == null)
+            return false;
+
+        // Optional: still respect your equip rules
+        if (!EquipmentRules.CanEquip(slot, item.Definition))
+            return false;
+
+        // No inventory grid: we just set the slot
+        _slots[slot] = item;
+        item.OwnerGrid = null; // make sure it’s not "owned" by a grid anymore
+
+        return true;
+    }
+
+
+    /// <summary>
+    /// Returns all currently equipped items.
+    /// </summary>
+    /// <returns></returns>
     public IEnumerable<ItemInstance> GetAllEquipped()
     {
         foreach (var kvp in _slots)
@@ -179,5 +226,8 @@ public class EquipmentSet
         }
     }
 
+    /// <summary>
+    /// Gets a read-only view of all equipment slots and their items.
+    /// </summary>
     public IReadOnlyDictionary<EquipmentSlot, ItemInstance> Slots => _slots;
 }

@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b13f7378be1eb375ea8e611e11af55c6, type: 3}
+  m_Name: Short Bow (Config)
+  m_EditorClassIdentifier: Assembly-CSharp::WeaponConfig
+  weaponPrefab: {fileID: 8918062790059207256, guid: 8cd4d4a8f0580423d996cbc119bfd3ff, type: 3}
+  slot: 12
+  _weaponStats: {fileID: 11400000, guid: 32fcf31070d27d342a91ae528398c92a, type: 2}
+  primaryAttack: 3
+  secondaryAttack: 0
+  animatorOverride: {fileID: 0}

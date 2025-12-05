@@ -1,3 +1,4 @@
+using Sirenix.OdinInspector;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -9,26 +10,23 @@ using UnityEngine;
 [RequireComponent(typeof(MeshFilter), typeof(MeshRenderer))]
 public class PlayerFieldOfView : MonoBehaviour
 {
-    [Header("Geometry")]
-    [Tooltip("How far the player can see (for occlusion).")]
-    public float viewRadius = 8f;
+    #region Variables and Properties
+    [FoldoutGroup("Geometry", expanded: true)]
+    [SerializeField] private float viewRadius = 8f;
+    [FoldoutGroup("Geometry", expanded: true)]
+    [SerializeField] [Range(0f, 360f)] private float viewAngle = 120f;
+    [FoldoutGroup("Geometry", expanded: true)]
+    [SerializeField] [Range(16, 512)] private int rayCount = 200;
+    [FoldoutGroup("Geometry", expanded: true)]
+    [SerializeField] private Vector2 originOffset = Vector2.zero;
 
-    [Tooltip("Angle of the vision cone in degrees.")]
-    [Range(0f, 360f)]
-    public float viewAngle = 120f;
-
-    [Tooltip("Number of rays. Higher = smoother, more expensive.")]
-    [Range(16, 512)]
-    public int rayCount = 200;
-
-    [Header("Obstacles")]
-    [Tooltip("Layers that block line of sight.")]
-    public LayerMask obstacleMask;
-
-    [Tooltip("Offset from this transform's position, e.g. if you want origin at feet/head.")]
-    public Vector2 originOffset = Vector2.zero;
+    [FoldoutGroup("Settings", expanded: true)]
+    [SerializeField] private LayerMask obstacleMask;
 
     private Mesh _mesh;
+    #endregion
+
+    // ==============================================================
 
     private void Awake()
     {
@@ -41,6 +39,8 @@ public class PlayerFieldOfView : MonoBehaviour
     {
         DrawFieldOfView();
     }
+
+    // ==============================================================
 
     private void DrawFieldOfView()
     {
@@ -92,4 +92,6 @@ public class PlayerFieldOfView : MonoBehaviour
         _mesh.triangles = triangles;
         _mesh.RecalculateBounds();
     }
+
+    // ==============================================================
 }

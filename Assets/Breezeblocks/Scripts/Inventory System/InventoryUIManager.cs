@@ -3,11 +3,15 @@ using UnityEngine;
 
 public class InventoryUIManager : MonoBehaviour
 {
+    #region Variables and Properties
     public static InventoryUIManager Instance { get; private set; }
 
     private readonly List<InventoryGridView> _views = new();
 
     public IReadOnlyList<InventoryGridView> Views => _views;
+    #endregion
+
+    // ======================================================================
 
     private void Awake()
     {
@@ -19,6 +23,8 @@ public class InventoryUIManager : MonoBehaviour
 
         Instance = this;
     }
+
+    // ======================================================================
 
     public void RegisterView(InventoryGridView view)
     {
@@ -32,6 +38,8 @@ public class InventoryUIManager : MonoBehaviour
         if (view == null) return;
         _views.Remove(view);
     }
+
+    // ======================================================================
 
     /// <summary>
     /// Returns the first InventoryGridView whose rect contains the given screen point.
@@ -53,4 +61,6 @@ public class InventoryUIManager : MonoBehaviour
 
         return null;
     }
+
+    // ======================================================================
 }

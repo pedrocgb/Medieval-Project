@@ -48,11 +48,9 @@ public class PlayerMovement : MonoBehaviour
             _visionLight = GetComponentInChildren<PlayerVisionLight>();
 
         if (_visionLight != null)
-            _storedBaseVisionRotationSmoothing = _visionLight.rotationSmoothing;
+            _storedBaseVisionRotationSmoothing = _visionLight.RotationSmoothing;
         else
             _storedBaseVisionRotationSmoothing = _baseVisionRotationSmoothing;
-
-        UpdateLoadModifiers();
     }
 
     void Update()
@@ -69,6 +67,10 @@ public class PlayerMovement : MonoBehaviour
 
     // ==============================================================
 
+    #region Movement Methods
+    /// <summary>
+    /// Handles reading movement input and calculating desired velocity.
+    /// </summary>
     private void MovementInputHandler()
     {
         _horizontalAxis = _playerBase.ControlScheme.GetAxis("Horizontal Axis");
@@ -92,7 +94,7 @@ public class PlayerMovement : MonoBehaviour
 
         float targetSpeed = _playerBase.MoveSpeed.Value * _playerBase.CurrentLoadConfig.moveSpeedMultiplier;
 
-        if (wantsRun && _playerBase.CanSprint() && _inputDir.sqrMagnitude > 0.01f && !_playerBase.StaminaDepleted)
+        if (wantsRun && _playerBase.CanSprint() && _inputDir.sqrMagnitude > 0.01f && !_playerBase.StaminaDepleted && !_playerBase.IsDrawingBow)
         {
             targetSpeed *= _playerBase.RunMultiplier.Value;
             _playerBase.DrainSprintStamina();
@@ -110,15 +112,21 @@ public class PlayerMovement : MonoBehaviour
 
         _currentMaxSpeed = targetSpeed;
 
+        if (_playerBase.IsDrawingBow)
+            _currentMaxSpeed = _currentMaxSpeed / Constants.DRAW_WALK_PENALTY;
+
         _desiredVelocity = _inputDir * _currentMaxSpeed;
 
         if (_visionLight != null)
         {
             float turnMult = _playerBase.CurrentLoadConfig.turnSpeedMultiplier;
-            _visionLight.rotationSmoothing = _storedBaseVisionRotationSmoothing * turnMult;
+            _visionLight.RotationSmoothing = _storedBaseVisionRotationSmoothing * turnMult;
         }
     }
 
+    /// <summary>
+    /// Handles actual movement by adjusting Rigidbody2D velocity.
+    /// </summary>
     private void Move()
     {
         Vector2 currentVel = _rb.linearVelocity;
@@ -137,18 +145,13 @@ public class PlayerMovement : MonoBehaviour
         Vector2 change = Vector2.ClampMagnitude(velDiff, accelRate * Time.fixedDeltaTime);
         _rb.linearVelocity = currentVel + change;
     }
+    #endregion
 
     // ==============================================================
 
-    private void UpdateLoadModifiers()
-    {
-
-    }
-
-    // ---------------------------------
-    // Dodge logic
-    // ---------------------------------
-
+    /// <summary>
+    /// Handles dodge input and state.
+    /// </summary>
     private void DodgeInputHandler()
     {
         // Update timers
@@ -198,9 +201,7 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
-    // ---------------------------------
-    // External forces hook
-    // ---------------------------------
+    // ==============================================================
 
     /// <summary>
     /// Returns extra velocity from dodge, knockback, wind, etc.

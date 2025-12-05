@@ -8,16 +8,17 @@ using UnityEngine;
 /// </summary>
 public class InventoryGrid
 {
+    #region Variables and Properties
     public int Width { get; private set; }
     public int Height { get; private set; }
 
-    // Each occupied cell contains a reference to the ItemInstance that occupies it.
-    // Multi-cell items are referenced by all their cells.
     private ItemInstance[,] _cells;
 
-    // Optional: track all items currently in this grid.
     private readonly List<ItemInstance> _items = new List<ItemInstance>();
     public IReadOnlyList<ItemInstance> Items => _items;
+    #endregion
+
+    // ==============================================================
 
     public InventoryGrid(int width, int height)
     {
@@ -38,6 +39,9 @@ public class InventoryGrid
     public bool InBounds(int x, int y) =>
         x >= 0 && y >= 0 && x < Width && y < Height;
 
+    // ==============================================================
+
+    #region Movement and Placement
     /// <summary>
     /// Checks if the item could be placed at the given top-left cell (x, y),
     /// assuming it is not already in this grid.
@@ -183,7 +187,11 @@ public class InventoryGrid
 
         return false;
     }
+    #endregion
 
+    // ==============================================================
+
+    #region Rotation
     /// <summary>
     /// Tries to move an item to a new top-left position with a new rotation.
     /// If placement fails, item and rotation are restored.
@@ -305,8 +313,11 @@ public class InventoryGrid
 
         return true;
     }
+    #endregion
 
+    // ==============================================================
 
+    #region Stacking
     /// <summary>
     /// Returns true if any amount from 'source' could be stacked into 'target'
     /// (at least 1 unit), without exceeding MaxStack.
@@ -355,5 +366,5 @@ public class InventoryGrid
 
         return true;
     }
-
+    #endregion
 }

@@ -2,6 +2,7 @@
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 using TMPro;
+using Sirenix.OdinInspector;
 
 /// <summary>
 /// Visual representation of an ItemInstance in the UI.
@@ -10,13 +11,17 @@ using TMPro;
 public class InventoryItemView : MonoBehaviour,
     IBeginDragHandler, IDragHandler, IEndDragHandler,
     IPointerEnterHandler, IPointerExitHandler, IPointerClickHandler
-    {
-    [Header("UI")]
+{
+    #region Variables and Properties
+    [FoldoutGroup("Components",expanded: true)]
     [SerializeField] private Image iconImage;
+    [FoldoutGroup("Components", expanded: true)]
     [SerializeField] private TextMeshProUGUI stackText;
+    [FoldoutGroup("Components", expanded: true)]
     [SerializeField] private CanvasGroup canvasGroup;
+    [FoldoutGroup("Components", expanded: true)]
     [SerializeField] private RectTransform rectTransform;
-    private RectTransform dragRoot;   // optional; can be null
+    private RectTransform dragRoot;
 
     private Vector2 _originalAnchoredPos;
     private Transform _originalParent;
@@ -24,8 +29,8 @@ public class InventoryItemView : MonoBehaviour,
     private ItemInstance _item;
     private RectTransform _rectTransform;
     private CanvasGroup _canvasGroup;
-    private InventoryGridView _gridView;        // "home" view
-    private InventoryGridView _currentHoverView; // view under pointer while dragging
+    private InventoryGridView _gridView;        
+    private InventoryGridView _currentHoverView;
     private RectTransform _mainCanvas;
 
     // Drag state
@@ -45,7 +50,9 @@ public class InventoryItemView : MonoBehaviour,
 
     public ItemInstance Item => _item;
     public InventoryGridView GridView => _gridView;
+    #endregion
 
+    // ======================================================================
 
     private void Awake()
     {
@@ -76,7 +83,9 @@ public class InventoryItemView : MonoBehaviour,
         }
     }
 
+    // ======================================================================
 
+    #region Item Handler
     /// <summary>
     /// Bind this view to a specific item and position it in the grid.
     /// </summary>
@@ -130,7 +139,10 @@ public class InventoryItemView : MonoBehaviour,
         }
     }
 
-
+    /// <summary>
+    /// Change object size for current rotation
+    /// </summary>
+    /// <param name="rotation"></param>
     private void ApplySizeForRotation(int rotation)
     {
         if (_item == null || _item.Definition == null || _rectTransform == null)
@@ -141,11 +153,11 @@ public class InventoryItemView : MonoBehaviour,
 
         _rectTransform.sizeDelta = new Vector2(w * _cellSize, h * _cellSize);
     }
+    #endregion
 
-    public void OnPointerDown(PointerEventData eventData)
-    {
-        // Reserved for future click / context menu.
-    }
+    // ======================================================================
+
+    #region Drag Callbacks
     public void OnBeginDrag(PointerEventData eventData)
     {
         // hide tooltip when starting drag
@@ -262,15 +274,15 @@ public class InventoryItemView : MonoBehaviour,
             ? eventData.pointerEnter.GetComponentInParent<EquipmentSlotView>()
             : null;
 
-        if (equipSlotView != null && equipSlotView.equipmentManager != null)
+        if (equipSlotView != null && equipSlotView.EquipmentManager != null)
         {
-            var gridBehaviour = _gridView.gridSource;
+            var gridBehaviour = _gridView.GridSource;
             var fromGrid = gridBehaviour != null ? gridBehaviour.Grid : null;
 
             if (fromGrid != null)
             {
-                bool equipped = equipSlotView.equipmentManager.TryEquipFromInventory(
-                    equipSlotView.slot,
+                bool equipped = equipSlotView.EquipmentManager.TryEquipFromInventory(
+                    equipSlotView.Slot,
                     _item,
                     fromGrid
                 );
@@ -307,10 +319,10 @@ public class InventoryItemView : MonoBehaviour,
         if (targetView == null)
             targetView = _gridView;
 
-        var sourceGridBehaviour = _gridView.gridSource;
+        var sourceGridBehaviour = _gridView.GridSource;
         var sourceGrid = sourceGridBehaviour != null ? sourceGridBehaviour.Grid : null;
 
-        var targetGridBehaviour = targetView.gridSource;
+        var targetGridBehaviour = targetView.GridSource;
         var targetGrid = targetGridBehaviour != null ? targetGridBehaviour.Grid : null;
 
         bool handled = false;
@@ -419,7 +431,15 @@ public class InventoryItemView : MonoBehaviour,
         if (targetView != _gridView)
             targetView.ClearHighlights();
     }
+    #endregion
 
+    // ======================================================================
+
+    #region On Pointer Callbacks
+    public void OnPointerDown(PointerEventData eventData)
+    {
+        // Reserved for future click / context menu.
+    }
     public void OnPointerEnter(PointerEventData eventData)
     {
         if (_item == null) return;
@@ -450,6 +470,8 @@ public class InventoryItemView : MonoBehaviour,
             menu.ShowForInventoryItem(this, eventData.position);
         }
     }
+    #endregion
 
+    // ======================================================================
 
 }

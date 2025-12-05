@@ -1,46 +1,72 @@
 using UnityEngine;
 using Sirenix.OdinInspector;
-using CharactersStats;
 using System.Collections.Generic;
 
 [CreateAssetMenu(menuName = "Inventory/Item Definition")]
 public class ItemDefinition : ScriptableObject
 {
-    [Header("Identity")]
-    public string Id; // e.g. "akm", "medkit_small"
+    [FoldoutGroup("Basic Info", expanded: true)]
+    [SerializeField] private string _id = string.Empty;
+    public string Id => _id;
+    [FoldoutGroup("Basic Info", expanded: true)]
+    [SerializeField] private string _displayName = string.Empty;
+    public string DisplayName => _displayName;
+    [FoldoutGroup("Basic Info", expanded: true)]
+    [SerializeField] [TextArea(8,20)] private string _description = string.Empty;
+    public string Description => _description;
+    [FoldoutGroup("Basic Info", expanded: true)]
+    [SerializeField] private Sprite _icon;
+    public Sprite Icon => _icon;
+    [FoldoutGroup("Basic Info", expanded: true)]
+    [SerializeField] private string _typeName = string.Empty;
+    public string TypeName => _typeName;
 
-    [Header("Presentation")]
-    public string DisplayName;
-    [TextArea]
-    public string Description;
+    // ======================================================================
 
-    [Tooltip("Short type label for UI, e.g. Sword, Helmet, Ring.")]
-    public string TypeName;
+    [FoldoutGroup("Modifiers", expanded: true)]
+    [SerializeField] private List<ItemStatModifierData> _statModifiers = new();
+    public List<ItemStatModifierData> StatModifiers => _statModifiers;
 
-    [FoldoutGroup("Modifiers")]
-    [SerializeField] private List<StatModifier> _modifiers = new List<StatModifier>();
-    public List<StatModifier> Modifiers => _modifiers;
+    // ======================================================================
 
-    [Header("Visual")]
-    public Sprite Icon;
+    [FoldoutGroup("Weapon", expanded: true)]
+    [SerializeField] private bool _isWeapon = false;
+    public bool IsWeapon => _isWeapon;
 
-    [Header("Size (in grid cells)")]
-    [Min(1)] public int Width = 1;
-    [Min(1)] public int Height = 1;
+    [FoldoutGroup("Weapon", expanded: true), ShowIf(nameof(_isWeapon))]
+    [SerializeField] private WeaponConfig _weaponConfig;
+    public WeaponConfig WeaponConfig => _weaponConfig;
 
-    [Header("Stacking")]
-    public bool Stackable = false;
-    [Min(1)] public int MaxStack = 1;
+    // ======================================================================
 
-    [Header("Equip")]
-    public bool Equipable = false;
+    [FoldoutGroup("Inventory Tetris", expanded: true)]
+    [SerializeField] [Min(1)] private int _width = 1;
+    public int Width => _width;
+    [FoldoutGroup("Inventory Tetris", expanded: true)]
+    [SerializeField] [Min(1)] private int _height = 1;
+    public int Height => _height;
 
-    [Tooltip("Tags used for equipment rules, e.g. Weapon, Helmet, Ring, etc.")]
-    public EquipTag[] EquipTags;
+    // ======================================================================
 
+    [FoldoutGroup("Inventory Tetris/Stack", expanded: true)]
+    [SerializeField] bool _stackable = false;
+    public bool Stackable => _stackable;
 
-    [Header("Advanced Shape (optional)")]
-    [Tooltip("Optional custom shape mask; rows = Height, columns = Width; index = x + y * Width")]
+    [FoldoutGroup("Inventory Tetris/Stack", expanded: true), ShowIf(nameof(_stackable))]
+    [SerializeField] [Min(1)] private int _maxStack = 1;
+    public int MaxStack => _maxStack;
+
+    // ======================================================================
+
+    [FoldoutGroup("Inventory Tetris/Equipment", expanded: true)]
+    [SerializeField] private bool _equipable = false;
+    public bool Equipable => _equipable;
+    [FoldoutGroup("Inventory Tetris/Equipment", expanded: true), ShowIf(nameof(_equipable))]
+    [SerializeField] private EquipTag[] _equipTags;
+    public EquipTag[] EquipTags => _equipTags;
+
+    // ======================================================================
+
     [HideInInspector]
     public bool[] ShapeMask;
 
@@ -49,4 +75,6 @@ public class ItemDefinition : ScriptableObject
     /// </summary>
     public bool HasCustomShape =>
         ShapeMask != null && ShapeMask.Length == Width * Height;
+
+    // ======================================================================
 }
