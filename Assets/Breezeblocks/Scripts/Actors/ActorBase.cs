@@ -2,8 +2,9 @@ using CharactersStats;
 using Sirenix.OdinInspector;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.U2D.IK;
 
-public abstract class ActorBase : MonoBehaviour, IStatCollection
+public abstract class ActorBase : MonoBehaviour, IStatCollection, IDamageable
 {
     #region Variables and Properties
     //// Attributes
@@ -67,19 +68,28 @@ public abstract class ActorBase : MonoBehaviour, IStatCollection
 
 
     //// Current Stats
+    [ShowInInspector, ReadOnly]
     protected float _currentHeadHealth;
+    [ShowInInspector, ReadOnly]
     protected float _currentTorsoHealth;
+    [ShowInInspector, ReadOnly]
     protected float _currentLeftArmHealth;
+    [ShowInInspector, ReadOnly]
     protected float _currentRightArmHealth;
+    [ShowInInspector, ReadOnly]
     protected float _currentLeftLegHealth;
+    [ShowInInspector, ReadOnly]
     protected float _currentRightLegHealth;
 
     protected float _acceleration;
     protected float _deceleration;
     protected float _currentCarryWeight;
 
+    [ShowInInspector, ReadOnly]
     protected float _currentFatigue;
+    [ShowInInspector, ReadOnly]
     protected float _currentThirst;
+    [ShowInInspector, ReadOnly]
     protected float _currentHunger;
 
     protected float _currentPain;
@@ -106,6 +116,7 @@ public abstract class ActorBase : MonoBehaviour, IStatCollection
     protected CharacterStat _maxStamina;
     protected CharacterStat _staminaRegen;
 
+    [ShowInInspector, ReadOnly]
     protected float _currentStamina;
     public float CurrentStamina => _currentStamina;
     private float _consumedStaminaTimeStamp = 0f;
@@ -175,11 +186,27 @@ public abstract class ActorBase : MonoBehaviour, IStatCollection
     protected CharacterStat _attackSpeed;
 
     /// Damage Stats
-    protected CharacterStat _slashingDamage;
-    protected CharacterStat _piercingDamage;
-    protected CharacterStat _bluntDamage;
+    protected CharacterStat _overallDamageModifier;
+
+    protected CharacterStat _physicalDamageModifier;
+    protected CharacterStat _slashDamageModifier;
+    protected CharacterStat _piercingDamageModifier;
+    protected CharacterStat _bludgeoningDamageModifier;
+
+    protected CharacterStat _natureDamageModifier;
+    protected CharacterStat _fireDamageModifier;
+    protected CharacterStat _coldDamageModifier;
+    protected CharacterStat _lightningDamageModifier;
+    protected CharacterStat _poisonDamageModifier;
+
+    protected CharacterStat _magicalDamageModifier;
+    protected CharacterStat _necroticDamageModifier;
+    protected CharacterStat _radiantDamageModifier;
+    protected CharacterStat _psychicDamageModifier;
 
     /// Weapons and Equipments
+    private WeaponConfig _equippedWeapon;
+    public WeaponConfig EquippedWeapon => _equippedWeapon;
     private bool _isDrawingBow = false;
     public bool IsDrawingBow { get  { return _isDrawingBow; } set { _isDrawingBow = value; } }
 
@@ -234,7 +261,25 @@ public abstract class ActorBase : MonoBehaviour, IStatCollection
         _radiantResistance = new CharacterStat(0f);
         _psychicResistance = new CharacterStat(0f);
 
-        RegisterStats();
+        _overallDamageModifier = new CharacterStat(0f);
+
+        _physicalDamageModifier = new CharacterStat(0f);
+        _slashDamageModifier = new CharacterStat(0f);
+        _piercingDamageModifier = new CharacterStat(0f);
+        _bludgeoningDamageModifier = new CharacterStat(0f);
+
+        _natureDamageModifier = new CharacterStat(0f);
+        _fireDamageModifier = new CharacterStat(0f);
+        _coldDamageModifier = new CharacterStat(0f);
+        _lightningDamageModifier = new CharacterStat(0f);
+        _poisonDamageModifier = new CharacterStat(0f);
+
+        _magicalDamageModifier = new CharacterStat(0f);
+        _necroticDamageModifier = new CharacterStat(0f);
+        _radiantDamageModifier = new CharacterStat(0f);
+        _psychicDamageModifier = new CharacterStat(0f);
+
+    RegisterStats();
     }
 
     protected virtual void Update()
@@ -328,6 +373,24 @@ public abstract class ActorBase : MonoBehaviour, IStatCollection
             { StatId.NecroticResistance, _necroticResistance },
             { StatId.RadiantResistance, _radiantResistance },
             { StatId.PsychicResistance, _psychicResistance },
+
+            { StatId.OverallDamageModifier, _overallDamageModifier },
+
+            { StatId.PhysicalDamageModifier, _physicalDamageModifier },
+            { StatId.SlashingDamageModifier, _slashDamageModifier },
+            { StatId.PiercingDamageModifier, _piercingDamageModifier },
+            { StatId.BludgeoninDamageModifier, _bludgeoningDamageModifier },
+
+            { StatId.NatureDamageModifier, _natureDamageModifier },
+            { StatId.FireDamagedModifier, _fireDamageModifier },
+            { StatId.ColdDamageModifier, _coldDamageModifier },
+            { StatId.LightningDamageModifier, _lightningDamageModifier },
+            { StatId.PoisonDamageModifier, _poisonDamageModifier },
+
+            { StatId.MagicalDamageModifier, _magicalDamageModifier },
+            { StatId.NecroticDamageModifier, _necroticDamageModifier },
+            { StatId.RadiantDamageModifier, _radiantDamageModifier },
+            { StatId.PsychicDamageModifier, _psychicDamageModifier },
         };
 
         Debug.Log(_stats.Count + " stats registered for " + gameObject.name);
@@ -386,6 +449,140 @@ public abstract class ActorBase : MonoBehaviour, IStatCollection
 
         _maxStamina = new CharacterStat(stats.BaseStamina + (_constitution.Value * Constants.STAMINA_PER_CONSTITUTION));
         _maxFatigue = new CharacterStat(stats.BaseFatigue + (_constitution.Value * Constants.FATIGUE_PER_CONSTITUTION));
+    }
+    #endregion
+
+    // ======================================================================
+
+    #region Damage Methods
+    public float GetDamageWithModifier(float damageValue, DamageType type)
+    {
+        return CalculateDamage(damageValue, type);
+    }
+
+    private float CalculateDamage(float initialDamage, DamageType type)
+    {
+        // 1) Type-specific modifier (e.g. +10% Slash, +5% Fire, etc.)
+        float damageModType = type switch
+        {
+            DamageType.Slash => _slashDamageModifier.Value,
+            DamageType.Piercing => _piercingDamageModifier.Value,
+            DamageType.Bludgeoning => _bludgeoningDamageModifier.Value,
+
+            DamageType.Fire => _fireDamageModifier.Value,
+            DamageType.Cold => _coldDamageModifier.Value,
+            DamageType.Lightning => _lightningDamageModifier.Value,
+            DamageType.Poison => _poisonDamageModifier.Value,
+
+            DamageType.Necrotic => _necroticDamageModifier.Value,
+            DamageType.Radiance => _radiantDamageModifier.Value,
+            DamageType.Psychic => _psychicDamageModifier.Value,
+
+            _ => 0f
+        };
+
+        // 2) Group modifier (physical / nature / magical)
+        float groupModifier = type switch
+        {
+            // Physical
+            DamageType.Slash or DamageType.Piercing or DamageType.Bludgeoning
+                => _physicalDamageModifier.Value,
+
+            // Nature (elemental / natural)
+            DamageType.Fire or DamageType.Cold or DamageType.Lightning or DamageType.Poison
+                => _natureDamageModifier.Value,
+
+            // Magical
+            DamageType.Necrotic or DamageType.Radiance or DamageType.Psychic
+                => _magicalDamageModifier.Value,
+
+            _ => 0f
+        };
+
+        // 3) Overall modifier (applies to all damage)
+        float overall = _overallDamageModifier.Value;
+
+        // 4) Sum all percentage bonuses, then add base 100% (1f)
+        float totalBonus = damageModType + groupModifier + overall;
+        float finalMulitplier = 1f + totalBonus;
+
+        return initialDamage * finalMulitplier;
+    }
+    #endregion
+
+    // ======================================================================
+
+    #region Damage Methods
+    public void TakeDamage(float damage, DamageType damageType, Limbs damageLimb)
+    {
+        DamageLimb(damage, damageType, damageLimb);
+    }
+
+    private void DamageLimb(float incomingDamage, DamageType damageType, Limbs damagedLimb)
+    {
+        // 1) Pick resistance based on damage type
+        float resistance = damageType switch
+        {
+            DamageType.Slash => _slashingResistance.Value + _physicalResistance.Value,
+            DamageType.Piercing => _piercingResistance.Value + _physicalResistance.Value,
+            DamageType.Bludgeoning => _bluntResistance.Value + _physicalResistance.Value,
+
+            DamageType.Fire => _fireResistance.Value + _natureResistance.Value,
+            DamageType.Cold => _coldResistance.Value + _physicalResistance.Value,
+            DamageType.Lightning => _lightningResistance.Value + _physicalResistance.Value,
+            DamageType.Poison => _poisonResistance.Value + _physicalResistance.Value,
+
+            DamageType.Radiance => _radiantResistance.Value + _magicalResistance.Value,
+            DamageType.Necrotic => _necroticResistance.Value + _magicalResistance.Value,
+            DamageType.Psychic => _psychicResistance.Value + _magicalResistance.Value,
+            _ => 0f
+        };
+
+        // 2) Apply to the correct limb + protection
+        switch (damagedLimb)
+        {
+            case Limbs.Head:
+                ApplyDamageToHealth(ref _currentHeadHealth, incomingDamage, resistance, _headProtection.Value);
+                break;
+
+            case Limbs.Torso:
+                ApplyDamageToHealth(ref _currentTorsoHealth, incomingDamage, resistance, _bodyProtection.Value);
+                break;
+
+            case Limbs.LeftArm:
+                ApplyDamageToHealth(ref _currentLeftArmHealth, incomingDamage, resistance, _armsProtection.Value);
+                break;
+
+            case Limbs.RightArm:
+                ApplyDamageToHealth(ref _currentRightArmHealth, incomingDamage, resistance, _armsProtection.Value);
+                break;
+
+            case Limbs.LeftLeg:
+                ApplyDamageToHealth(ref _currentLeftLegHealth, incomingDamage, resistance, _armsProtection.Value);
+                break;
+
+            case Limbs.RightLeg:
+                ApplyDamageToHealth(ref _currentRightLegHealth, incomingDamage, resistance, _armsProtection.Value);
+                break;
+        }
+    }
+
+    private void ApplyDamageToHealth(ref float limbHealth,
+                                     float incomingDamage,
+                                     float resistancePercent,
+                                     float flatProtection)
+    {
+        // incoming * (1 - R) - flat
+        float afterResist = incomingDamage * (1f - resistancePercent);
+        float afterFlat = afterResist - flatProtection;
+        float finalDamage = Mathf.Max(0f, afterFlat);
+
+        limbHealth -= finalDamage;
+    }
+
+    public void Die()
+    {
+        
     }
     #endregion
 
@@ -481,6 +678,14 @@ public abstract class ActorBase : MonoBehaviour, IStatCollection
         if (_currentStamina <= 0f)
             TakeBreath();
         
+    }
+
+    public bool CanConsumeStamina(float amount)
+    {
+        if (_currentStamina >= amount)
+            return true;
+
+        return false;
     }
 
     /// <summary>

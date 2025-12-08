@@ -12,7 +12,7 @@ public static class CarryWeightSettings
         public float staminaPenalty = 1f;
         public bool canRun = true;
     }
-    public const float MaxOverburdenedSpeed = 0.75f;
+    public const float MaxOverburdenedSpeed = 0.2f;
     public static LoadConfig GetCurrentLoadConfig(CarryLoadStage Config)
     {
         switch (Config)

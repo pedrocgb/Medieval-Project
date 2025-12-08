@@ -1,15 +1,13 @@
 using Sirenix.OdinInspector;
 using UnityEngine;
 
-public enum WeaponAttackKind
+public enum WeaponCategory
 {
-    None,
-    Slash,
-    Thrust,
-    Shoot,
+    Melee,
+    Ranged
 }
 
-[CreateAssetMenu(menuName = "Items/Weapon Config")]
+[CreateAssetMenu(fileName = "New Weapon Config", menuName = "Breezeblocks/Weapons/Config")]
 public class WeaponConfig : ScriptableObject
 {
     [FoldoutGroup("Info", expanded: true)]
@@ -25,18 +23,21 @@ public class WeaponConfig : ScriptableObject
 
     // ======================================================================
 
-    [FoldoutGroup("Info/Stats", expanded: true)]
-    [SerializeField] private WeaponStats _weaponStats;
-    public WeaponStats Stats => _weaponStats;
+    [FoldoutGroup("Info/Attack", expanded: true)]
+    [SerializeField] private WeaponCategory _category;
+    public WeaponCategory Category => _category;
 
     // ======================================================================
 
-    [FoldoutGroup("Info/Attack", expanded: true)]
-    [SerializeField] private WeaponAttackKind _primaryAttack;
-    public WeaponAttackKind PrimaryAttack => _primaryAttack;
-    [FoldoutGroup("Info/Attack", expanded: true)]
-    [SerializeField] private WeaponAttackKind _secondaryAttack;
-    public WeaponAttackKind SecondaryAttack => _secondaryAttack;
+    [FoldoutGroup("Info/Attack", expanded: true), ShowIf("_category", WeaponCategory.Ranged)]
+    [SerializeField] private RangedStats _rangedStats;
+    public RangedStats RangedStats => _rangedStats;
+    [FoldoutGroup("Info/Attack", expanded: true), ShowIf("_category", WeaponCategory.Melee)]
+    [SerializeField] private MeleeAttackShapeStats _primaryAttackShape;
+    public MeleeAttackShapeStats PrimaryAttackShape => _primaryAttackShape;
+    [FoldoutGroup("Info/Attack", expanded: true), ShowIf("_category", WeaponCategory.Melee)]
+    [SerializeField] private MeleeAttackShapeStats _secondaryAttackShape;
+    public MeleeAttackShapeStats SecondaryAttackShape => _secondaryAttackShape;
 
     // ======================================================================
 }

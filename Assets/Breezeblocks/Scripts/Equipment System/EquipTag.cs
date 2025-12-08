@@ -58,7 +58,23 @@ public enum StatId
     RadiantResistance,
     PsychicResistance,
 
-    // Later you can add:
-    // PhysicalDamage, CritChance, MoveSpeed, etc...
+    // Damage type
+    OverallDamageModifier,
+
+    PhysicalDamageModifier,
+    SlashingDamageModifier,
+    PiercingDamageModifier,
+    BludgeoninDamageModifier,
+
+    NatureDamageModifier,
+    FireDamagedModifier,
+    ColdDamageModifier,
+    LightningDamageModifier,
+    PoisonDamageModifier,
+
+    MagicalDamageModifier,
+    NecroticDamageModifier,
+    RadiantDamageModifier,
+    PsychicDamageModifier
 }
 

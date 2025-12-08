@@ -1,0 +1,62 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7ef23842fa5c62cd39d842e3c5e243a3, type: 3}
+  m_Name: Short Sword (Swipe)
+  m_EditorClassIdentifier: Assembly-CSharp::MeleeWeaponStats
+  _quality: 1
+  _minBaseDamage: 6
+  _maxBaseDamage: 8
+  _damageType: 0
+  _headHitChance: 5
+  _torsoHitChance: 40
+  _leftArmHitChance: 25
+  _rightArmHitChance: 25
+  _leftLegHitChance: 12
+  _rightLegHitChance: 12
+  _attackSpeed: 0.75
+  _staminaCost: 25
+  _fatigueCost: 0
+  _shape: 0
+  _motionDuration: 0.15
+  _swipeArcDegrees: 180
+  _swipeCenterOffset: 0
+  _swipeRadius: 0.33
+  _stabDistance: 1.5
+  _stabSideOffset: 0
+  _hitboxRadius: 0.05
+  _stopOnHit: 1
+  damageOverTime:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  _attackEffectPrefab: Swipe Effect
+  _hitEffectPrefab: Melee Hit Effect

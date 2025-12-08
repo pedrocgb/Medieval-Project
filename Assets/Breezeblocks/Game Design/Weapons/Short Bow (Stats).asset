@@ -9,17 +9,30 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 604ea12531c5436499ab1c146d7d5e92, type: 3}
+  m_Script: {fileID: 11500000, guid: 3f42ec22cf946644e97d594cd8c50748, type: 3}
   m_Name: Short Bow (Stats)
-  m_EditorClassIdentifier: Assembly-CSharp::BowStats
-  _arrowPrefab: Arrow
-  _minDistance: 0.5
-  _maxDistance: 5
+  m_EditorClassIdentifier: Assembly-CSharp::RangedStats
+  _quality: 1
+  _minBaseDamage: 2
+  _maxBaseDamage: 6
+  _damageType: 1
+  _headHitChance: 5
+  _torsoHitChance: 18
+  _leftArmHitChance: 8
+  _rightArmHitChance: 8
+  _leftLegHitChance: 6
+  _rightLegHitChance: 6
+  _attackSpeed: 1
+  _staminaCost: 0
+  _fatigueCost: 0
+  _projectilePrefab: Arrow
+  _minDistance: 3
+  _maxDistance: 8
   _maxDrawTime: 2
-  _drawStaminaDrain: 12
-  _minArrowSpeed: 4.5
-  _maxArrowSpeed: 6
-  _minDamageMult: 0.2
+  _drawStaminaDrain: 9
+  _minArrowSpeed: 5.5
+  _maxArrowSpeed: 7
+  _minDamageMult: 0.1
   _maxDamageMult: 1
-  _maxSpreadAngle: 20
-  _minSpreadAngle: 2
+  _maxSpreadAngle: 25
+  _minSpreadAngle: 8

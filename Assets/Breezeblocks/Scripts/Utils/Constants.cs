@@ -34,4 +34,12 @@ public static class Constants
     public const float STAMINA_COOLDOWN = 1.5f;
     public const float DRAW_WALK_PENALTY = 3F;
 
+    //// Equipments and Items Constants
+    public const float POOR_QUALITY_DAMAGE_MODIFIER = 0.5f;
+    public const float CRUDE_QUALITY_DAMAGE_MODIFIER = 0.25f;
+    public const float FINE_QUALITY_DAMAGE_MODIFIER = 0f;
+    public const float SUPERIOR_QUALITY_DAMAGE_MODIFIER = 1.2f;
+    public const float EXCEPCIONAL_QUALITY_DAMAGE_MODIFIER = 1.4f;
+    public const float MASTERFULLY_QUALITY_DAMAGE_MODIFIER = 2f;
+
 }

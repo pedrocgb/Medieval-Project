@@ -1,4 +1,4 @@
-using ObjectPool;
+﻿using ObjectPool;
 using Sirenix.OdinInspector;
 using System.Collections.Generic;
 using UnityEngine;
@@ -26,7 +26,7 @@ public class InventoryGridView : MonoBehaviour
     [SerializeField] private float _cellSize = 64f;
     public float CellSize => _cellSize;
     [FoldoutGroup("Layout", expanded: true)]
-    [SerializeField] private float  _cellSpacing = 2f;
+    [SerializeField] private float _cellSpacing = 2f;
 
     [FoldoutGroup("Colors", expanded: true)]
     [SerializeField] private Color _normalSlotColor = Color.white;
@@ -41,6 +41,13 @@ public class InventoryGridView : MonoBehaviour
 
     public InventoryGrid Grid => _gridSource != null ? _gridSource.Grid : null;
     #endregion
+
+    // ======================================================================
+
+    public void SetGridSource(InventoryGridBehaviour NewSource)
+    {
+        _gridSource = NewSource;
+    }
 
     // ======================================================================
 

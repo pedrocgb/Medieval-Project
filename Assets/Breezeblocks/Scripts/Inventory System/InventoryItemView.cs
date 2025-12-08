@@ -13,7 +13,7 @@ public class InventoryItemView : MonoBehaviour,
     IPointerEnterHandler, IPointerExitHandler, IPointerClickHandler
 {
     #region Variables and Properties
-    [FoldoutGroup("Components",expanded: true)]
+    [FoldoutGroup("Components", expanded: true)]
     [SerializeField] private Image iconImage;
     [FoldoutGroup("Components", expanded: true)]
     [SerializeField] private TextMeshProUGUI stackText;
@@ -29,19 +29,22 @@ public class InventoryItemView : MonoBehaviour,
     private ItemInstance _item;
     private RectTransform _rectTransform;
     private CanvasGroup _canvasGroup;
-    private InventoryGridView _gridView;        
+    private InventoryGridView _gridView;
     private InventoryGridView _currentHoverView;
     private RectTransform _mainCanvas;
 
+    private float _originalCellX;
+    private float _originalCellY;
+
     // Drag state
     private Vector2 _originalAnchoredPosition;
-    private int _originalCellX;
-    private int _originalCellY;
     private bool _isDragging;
     private Vector2 _pointerOffset;
 
-    // Rotation preview while dragging
-    private int _draggedRotation;  // 0 or 90 for now
+    // 🔹 Single rotation source used during drag and preview
+    private int _dragRotation;
+
+    // Rotation preview while dragging (no longer separate)
     private float _cellSize;
 
     // For preview updates
@@ -69,14 +72,15 @@ public class InventoryItemView : MonoBehaviour,
 
         if (Input.GetKeyDown(KeyCode.R))
         {
-            // Toggle 0 <-> 90 degrees (extend if you add 180/270 later)
-            _draggedRotation = (_draggedRotation + 90) % 180;
-            ApplySizeForRotation(_draggedRotation);
+            // 🔹 Rotate using _dragRotation (only one variable now)
+            _dragRotation = (_dragRotation + 90) % 180;
+            UpdateIconSizeForRotation();
+            UpdateIconRotation();
 
             // Re-run preview at the same screen position
             _currentHoverView.PreviewPlacement(
                 _item,
-                _draggedRotation,
+                _dragRotation,
                 _lastDragScreenPos,
                 _lastDragCamera  // can be null for overlay canvas, that's fine
             );
@@ -101,8 +105,10 @@ public class InventoryItemView : MonoBehaviour,
         _rectTransform.anchorMax = new Vector2(0f, 1f);
         _rectTransform.pivot = new Vector2(0f, 1f);
 
-        _draggedRotation = item.Rotation;
-        ApplySizeForRotation(_draggedRotation);
+        // 🔹 Initialize drag rotation from item's current rotation
+        _dragRotation = item.Rotation;
+        ApplySizeForRotation(_dragRotation);
+        UpdateIconRotation();
 
         float xPos = item.X * cellSize;
         float yPos = item.Y * cellSize;
@@ -142,7 +148,6 @@ public class InventoryItemView : MonoBehaviour,
     /// <summary>
     /// Change object size for current rotation
     /// </summary>
-    /// <param name="rotation"></param>
     private void ApplySizeForRotation(int rotation)
     {
         if (_item == null || _item.Definition == null || _rectTransform == null)
@@ -152,6 +157,31 @@ public class InventoryItemView : MonoBehaviour,
         int h = (rotation % 180 == 0) ? _item.Definition.Height : _item.Definition.Width;
 
         _rectTransform.sizeDelta = new Vector2(w * _cellSize, h * _cellSize);
+    }
+
+    private void UpdateIconSizeForRotation()
+    {
+        if (rectTransform == null || _item == null || _item.Definition == null)
+            return;
+
+        int srcW = _item.Definition.Width;
+        int srcH = _item.Definition.Height;
+
+        // 🔹 Use _dragRotation consistently
+        int w = (_dragRotation % 180 == 0) ? srcW : srcH;
+        int h = (_dragRotation % 180 == 0) ? srcH : srcW;
+
+        rectTransform.sizeDelta = new Vector2(w * _gridView.CellSize, h * _gridView.CellSize);
+    }
+
+    private void UpdateIconRotation()
+    {
+        if (iconImage == null) return;
+
+        // rotate sprite in 90° increments
+        iconImage.rectTransform.localEulerAngles = new Vector3(0, 0, -_dragRotation);
+
+        // NOTE: we still rely on UpdateIconSizeForRotation() to resize correctly.
     }
     #endregion
 
@@ -168,6 +198,9 @@ public class InventoryItemView : MonoBehaviour,
 
         _isDragging = true;
         _currentHoverView = null;
+
+        // 🔹 Start drag rotation from the item's current rotation
+        _dragRotation = _item.Rotation;
 
         _originalParent = rectTransform.parent;
         _originalAnchoredPos = rectTransform.anchoredPosition;
@@ -221,9 +254,6 @@ public class InventoryItemView : MonoBehaviour,
         _lastDragScreenPos = eventData.position;
         _lastDragCamera = eventData.pressEventCamera;
 
-        // --- existing preview logic (keep your current version here) ---
-        // Example pattern (adapt to what you already have):
-
         var item = _item;
         if (item == null)
             return;
@@ -245,12 +275,13 @@ public class InventoryItemView : MonoBehaviour,
         {
             _currentHoverView.PreviewPlacement(
                 item,
-                item.Rotation,
+                _dragRotation,            // 🔹 always use _dragRotation for preview
                 _lastDragScreenPos,
                 _lastDragCamera
             );
         }
     }
+
     public void OnEndDrag(PointerEventData eventData)
     {
         if (!_isDragging || _item == null || _gridView == null)
@@ -298,10 +329,10 @@ public class InventoryItemView : MonoBehaviour,
             }
 
             // Equip failed (wrong tag / no space for swap / etc):
-            // snap back to original position
+            // snap back to original position & rotation
             _rectTransform.anchoredPosition = _originalAnchoredPosition;
-            _draggedRotation = _item.Rotation;
-            ApplySizeForRotation(_draggedRotation);
+            _dragRotation = _item.Rotation;
+            ApplySizeForRotation(_dragRotation);
 
             _gridView.ClearHighlights();
             _currentHoverView?.ClearHighlights();
@@ -377,22 +408,24 @@ public class InventoryItemView : MonoBehaviour,
                 if (targetGrid == sourceGrid)
                 {
                     // Same-grid move
-                    bool moved = targetView.TryMoveItemWithRotation(_item, cellX, cellY, _draggedRotation);
+                    bool moved = targetView.TryMoveItemWithRotation(_item, cellX, cellY, _dragRotation);
                     if (!moved)
                     {
                         _rectTransform.anchoredPosition = _originalAnchoredPosition;
-                        _draggedRotation = _item.Rotation;
-                        ApplySizeForRotation(_draggedRotation);
+                        _dragRotation = _item.Rotation;
+                        ApplySizeForRotation(_dragRotation);
                     }
                 }
                 else
                 {
                     // Cross-grid move
                     if (sourceGrid != null &&
-                        targetGrid.CanPlaceWithRotation(_item, cellX, cellY, _draggedRotation, ignoreSelf: false))
+                        targetGrid.CanPlaceWithRotation(_item, cellX, cellY, _dragRotation, ignoreSelf: false))
                     {
                         sourceGrid.Remove(_item);
-                        _item.Rotation = _draggedRotation;
+
+                        // 🔹 Only now actually commit the new rotation to the item
+                        _item.Rotation = _dragRotation;
 
                         bool placed = targetGrid.TryPlace(_item, cellX, cellY);
                         if (!placed)
@@ -413,8 +446,8 @@ public class InventoryItemView : MonoBehaviour,
                     else
                     {
                         _rectTransform.anchoredPosition = _originalAnchoredPosition;
-                        _draggedRotation = _item.Rotation;
-                        ApplySizeForRotation(_draggedRotation);
+                        _dragRotation = _item.Rotation;
+                        ApplySizeForRotation(_dragRotation);
                     }
                 }
             }
@@ -423,8 +456,8 @@ public class InventoryItemView : MonoBehaviour,
         {
             // Dropped outside any valid cell
             _rectTransform.anchoredPosition = _originalAnchoredPosition;
-            _draggedRotation = _item.Rotation;
-            ApplySizeForRotation(_draggedRotation);
+            _dragRotation = _item.Rotation;
+            ApplySizeForRotation(_dragRotation);
         }
 
         _gridView.ClearHighlights();
@@ -440,6 +473,7 @@ public class InventoryItemView : MonoBehaviour,
     {
         // Reserved for future click / context menu.
     }
+
     public void OnPointerEnter(PointerEventData eventData)
     {
         if (_item == null) return;

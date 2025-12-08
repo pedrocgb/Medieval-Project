@@ -22,10 +22,10 @@ MonoBehaviour:
   _baseTorsoHealth: 0
   _baseArmsHealth: 0
   _baseLegsHealth: 0
-  _baseMoveSpeed: 1
+  _baseMoveSpeed: 0.4
   _baseRunMultiplier: 1.2
-  _baseAcceleration: 12
-  _baseDeceleration: 16
+  _baseAcceleration: 4
+  _baseDeceleration: 10
   _baseDodgeCooldown: 1
   _baseDodgeDuration: 0.2
   _baseDodgePower: 4

@@ -26,6 +26,11 @@ MonoBehaviour:
   _description: Simple short bow.
   _icon: {fileID: 8303198527338303379, guid: 8063a7e7974e184e5ab5ed44dd8615b2, type: 3}
   _typeName: 
+  _rarity: 0
+  _quality: 0
+  _maxDurability: 100
+  _isConsumable: 0
+  _maxConsumes: 3
   _statModifiers: []
   _equipable: 1
   _equipTags: 08000000

@@ -181,11 +181,8 @@ public class EquipmentSet
         }
 
         // 4) Equip new item
-        existing.OwnerGrid = null;
         item.OwnerGrid = null;
         _slots[slot] = item;
-
-        
 
         return true;
     }

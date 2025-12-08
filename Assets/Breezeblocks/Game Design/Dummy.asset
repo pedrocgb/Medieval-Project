@@ -1,0 +1,43 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 43fce97eab4d5714e9db0b3291e0244a, type: 3}
+  m_Name: Dummy
+  m_EditorClassIdentifier: Assembly-CSharp::EnemyStats
+  _baseStrength: 8
+  _baseDexterity: 8
+  _baseConstitution: 12
+  _baseIntelligence: 8
+  _baseWisdom: 8
+  _baseCharisma: 8
+  _baseHeadHealth: 0
+  _baseTorsoHealth: 0
+  _baseArmsHealth: 0
+  _baseLegsHealth: 0
+  _baseMoveSpeed: 2
+  _baseRunMultiplier: 1.6
+  _baseAcceleration: 12
+  _baseDeceleration: 16
+  _baseDodgeCooldown: 1
+  _baseDodgeDuration: 0.5
+  _baseDodgePower: 5
+  _baseDodgeStaminaCost: 20
+  _baseDodgeFatigueCost: 10
+  _baseCarryWeight: 0
+  _baseThirst: 100
+  _baseHunger: 100
+  _baseStamina: 100
+  _baseStaminaRegen: 10
+  _baseFatigue: 0
+  _baseSanity: 100
+  _baseMorale: 100
+  _basePain: 0
+  _baseIntoxication: 0

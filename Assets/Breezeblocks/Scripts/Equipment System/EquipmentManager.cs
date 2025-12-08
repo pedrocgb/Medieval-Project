@@ -145,14 +145,25 @@ public class EquipmentManager : MonoBehaviour
     /// <param name="slot"></param>
     private void HandleWeaponUnequip(EquipmentSlot slot)
     {
+        // If we had a runtime for this slot, notify it
         if (_weaponRuntimes.TryGetValue(slot, out var runtime) && runtime != null)
         {
             runtime.OnUnequipped();
+
+            // IMPORTANT: clear from WeaponHandler so it stops using a destroyed GO
+            if (_weaponHandler != null)
+            {
+                // If your WeaponHandler has a CurrentWeapon property and you want to
+                // be extra-safe, you can check equality here instead:
+                // if (_weaponHandler.CurrentWeapon == runtime) { ... }
+                _weaponHandler.ChangeWeapon(null);
+            }
         }
 
+        // Destroy the spawned instance (3D weapon model) if any
         if (_spawnedWeaponInstances.TryGetValue(slot, out var instance) && instance != null)
         {
-            Destroy(instance);
+            instance.SetActive(false);
         }
 
         _weaponRuntimes.Remove(slot);

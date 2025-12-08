@@ -2,7 +2,7 @@ using UnityEngine;
 using Sirenix.OdinInspector;
 using System.Collections.Generic;
 
-[CreateAssetMenu(fileName = "New Item", menuName = "Breezeblocks/Stats/Item")]
+[CreateAssetMenu(fileName = "New Item", menuName = "Breezeblocks/Item")]
 public class Item : SerializedScriptableObject
 {
     [FoldoutGroup("Basic Info", expanded: true)]
@@ -24,6 +24,24 @@ public class Item : SerializedScriptableObject
     [FoldoutGroup("Basic Info", expanded: true)]
     [SerializeField] private string _typeName = string.Empty;
     public string TypeName => _typeName;
+
+    // ======================================================================
+
+    [FoldoutGroup("Rarity", expanded: true)]
+    [SerializeField] private ItemRarity _rarity = ItemRarity.Commmon;
+    public ItemRarity Rarity => _rarity;
+
+    // ======================================================================
+
+    [FoldoutGroup("Consumable and Durability", expanded: true)]
+    [SerializeField] private float _maxDurability = 100f;
+    public float MaxDurability => _maxDurability;
+    [FoldoutGroup("Consumable and Durability", expanded: true)]
+    [SerializeField] private bool _isConsumable = false;
+    public bool IsConsumable => _isConsumable;
+    [FoldoutGroup("Consumable and Durability", expanded: true), ShowIf("_isConsumable")]
+    [SerializeField] private int _maxConsumes = 3;
+    public int MaxConsumes => _maxConsumes;
 
     // ======================================================================
 
@@ -82,3 +100,13 @@ public class Item : SerializedScriptableObject
     public bool HasCustomShape =>
         _shapeMask != null && _shapeMask.Length == Width * Height;
 }
+
+public enum ItemRarity
+{
+    Commmon,
+    Rare,
+    Epic,
+    Legendary,
+    Unique
+}
+

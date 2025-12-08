@@ -1,0 +1,38 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: be3cd1557f327d847be40965e2e813b0, type: 3}
+  m_Name: Short Sword (UI)
+  m_EditorClassIdentifier: Assembly-CSharp::Item
+  serializationData:
+    SerializedFormat: 2
+    SerializedBytes: 
+    ReferencedUnityObjects: []
+    SerializedBytesString: 
+    Prefab: {fileID: 0}
+    PrefabModificationsReferencedUnityObjects: []
+    PrefabModifications: []
+    SerializationNodes: []
+  _id: short_sword
+  _displayName: Short Sword
+  _description: A common short sword.
+  _icon: {fileID: 4628700134013525267, guid: 8063a7e7974e184e5ab5ed44dd8615b2, type: 3}
+  _typeName: 
+  _statModifiers: []
+  _equipable: 1
+  _equipTags: 08000000
+  _isWeapon: 1
+  _weaponConfig: {fileID: 11400000, guid: afb6fc66f0f14c169adfabd2d5ea7b56, type: 2}
+  _width: 1
+  _height: 4
+  _stackable: 0
+  _maxStack: 1
+  _shapeMask: 01010101

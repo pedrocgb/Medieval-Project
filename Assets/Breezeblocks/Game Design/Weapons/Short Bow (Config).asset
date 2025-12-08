@@ -13,7 +13,8 @@ MonoBehaviour:
   m_Name: Short Bow (Config)
   m_EditorClassIdentifier: Assembly-CSharp::WeaponConfig
   _weaponPrefab: Short Bow
-  _slot: 0
-  _weaponStats: {fileID: 11400000, guid: 32fcf31070d27d342a91ae528398c92a, type: 2}
-  _primaryAttack: 3
-  _secondaryAttack: 0
+  _slot: 12
+  _category: 1
+  _rangedStats: {fileID: 11400000, guid: 2ff25f543227b81438b7f46c555dfe1c, type: 2}
+  _primaryAttackShape: {fileID: 0}
+  _secondaryAttackShape: {fileID: 0}

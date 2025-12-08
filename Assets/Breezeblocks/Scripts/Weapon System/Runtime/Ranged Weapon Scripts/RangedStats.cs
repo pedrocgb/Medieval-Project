@@ -1,12 +1,12 @@
 using Sirenix.OdinInspector;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "Bow Stats", menuName = "Breezeblocks/Weapon/Bow Stats")]
-public class BowStats : WeaponStats
+[CreateAssetMenu(fileName = "Ranged Weapon Stats", menuName = "Breezeblocks/Weapons/Ranged Weapon Stats")]
+public class RangedStats : WeaponStats
 {
     [FoldoutGroup("Bow Stats", expanded: true)]
-    [SerializeField] private string _arrowPrefab;
-    public string ArrowPrefab => _arrowPrefab;
+    [SerializeField] private string _projectilePrefab;
+    public string ProjectilePrefab => _projectilePrefab;
 
     // ==============================================================
 
