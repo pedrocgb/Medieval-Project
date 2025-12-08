@@ -35,7 +35,7 @@ public class WorldInventory : MonoBehaviour
 
         if (_chestGridView != null && _gridBehaviour != null)
         {
-            _chestGridView.SetGridSource(_gridBehaviour);
+            //_chestGridView.SetGridSource(_gridBehaviour);
             _chestGridView.Rebuild();
         }
     }

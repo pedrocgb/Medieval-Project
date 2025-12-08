@@ -6,11 +6,9 @@ public class InventoryGridBehaviour : MonoBehaviour
 {
     #region Variables and Properties
     [FoldoutGroup("Grid", expanded: true)]
-    [SerializeField] private int _width = 0;
-    public int Width => _width;
+    [SerializeField] private int _width = 10;
     [FoldoutGroup("Grid", expanded: true)]
-    [SerializeField] private int _height = 0;
-    public int Height => _height;
+    [SerializeField] private int _height = 4;
     [FoldoutGroup("Grid", expanded: true)]
     [SerializeField] InventoryGridView _gridView;
     public InventoryGridView GridView => _gridView;

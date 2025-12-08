@@ -9,8 +9,6 @@ public class InventoryUIManager : MonoBehaviour
     private readonly List<InventoryGridView> _views = new();
 
     public IReadOnlyList<InventoryGridView> Views => _views;
-
-    //private Dictionary<WorldInventory, InventoryWindowUI> activeWorldInventories = new();
     #endregion
 
     // ======================================================================
@@ -63,30 +61,6 @@ public class InventoryUIManager : MonoBehaviour
 
         return null;
     }
-
-    // ======================================================================
-
-    //public void ShowWorldInventory(WorldInventory worldInv)
-    //{
-    //    var grid = worldInv.GridBehaviour;
-
-    //    // instantiate a UI window for this container
-    //    var newView = Instantiate(worldInventoryUIPrefab, inventoryParent);
-
-    //    newView.Bind(grid);         // your existing bind logic
-    //    newView.SetTitle(worldInv.ContainerName);
-
-    //    activeWorldInventories.Add(worldInv, newView);
-    //}
-
-    //public void HideWorldInventory(WorldInventory worldInv)
-    //{
-    //    if (activeWorldInventories.TryGetValue(worldInv, out var view))
-    //    {
-    //        Destroy(view.gameObject);
-    //        activeWorldInventories.Remove(worldInv);
-    //    }
-    //}
 
     // ======================================================================
 }

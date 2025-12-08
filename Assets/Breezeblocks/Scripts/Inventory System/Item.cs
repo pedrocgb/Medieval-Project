@@ -27,24 +27,6 @@ public class Item : SerializedScriptableObject
 
     // ======================================================================
 
-    [FoldoutGroup("Rarity", expanded: true)]
-    [SerializeField] private ItemRarity _rarity = ItemRarity.Commmon;
-    public ItemRarity Rarity => _rarity;
-
-    // ======================================================================
-
-    [FoldoutGroup("Consumable and Durability", expanded: true)]
-    [SerializeField] private float _maxDurability = 100f;
-    public float MaxDurability => _maxDurability;
-    [FoldoutGroup("Consumable and Durability", expanded: true)]
-    [SerializeField] private bool _isConsumable = false;
-    public bool IsConsumable => _isConsumable;
-    [FoldoutGroup("Consumable and Durability", expanded: true), ShowIf("_isConsumable")]
-    [SerializeField] private int _maxConsumes = 3;
-    public int MaxConsumes => _maxConsumes;
-
-    // ======================================================================
-
     [FoldoutGroup("Modifiers", expanded: true)]
     [SerializeField] private List<ItemStatModifierData> _statModifiers = new();
     public List<ItemStatModifierData> StatModifiers => _statModifiers;
@@ -100,13 +82,3 @@ public class Item : SerializedScriptableObject
     public bool HasCustomShape =>
         _shapeMask != null && _shapeMask.Length == Width * Height;
 }
-
-public enum ItemRarity
-{
-    Commmon,
-    Rare,
-    Epic,
-    Legendary,
-    Unique
-}
-
